@@ -3,10 +3,10 @@
 	name = Fahmi Adi Nugraha
 
 [core]
-	pager = delta --line-numbers
+	pager = delta
 
-[delta]
-	syntax-theme = base16
+[intractive]
+    diffFilter = delta --dark --color-only --features=interactive
 
 [credential]
 	helper = cache

@@ -4,31 +4,13 @@ export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH="/home/fahmi/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="powerlevel10k/powerlevel10k"
 #ZSH_THEME="spaceship"
 
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Examp le format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode autoupdate tmux zsh-autosuggestions zsh-syntax-highlighting fzf
-	fzf-tab direnv nix-shell nix-zsh-completions)
+plugins=(git vi-mode direnv fzf fzf-tab tmux ubuntu zsh-autosuggestions zsh-syntax-highlighting
+  nix-zsh-completions autoupdate)
 
 source $ZSH/oh-my-zsh.sh
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 #########################
 # Environment Variables #
@@ -46,8 +28,11 @@ export MAKEFLAGS="-j$(nproc)"
 # Add ccache to the system PATH
 export PATH="/usr/lib/ccache/bin:$PATH"
 
-# Make it so that steam closes to the tray
-export STEAM_FRAME_FORCE_CLOSE=1
+# WSL
+# ---
+
+# Set DISPLAY var for connecting to external X server
+export DISPLAY=localhost:0.0
 
 # node
 # ----
@@ -64,8 +49,8 @@ export FZF_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow -g '!.{git,
 # ctrl+t
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-# ctrl+r
-export FZF_ALT_C_COMMAND='fd -t d -HL -E "{.git,__py*}"'
+# alt+c
+export FZF_ALT_C_COMMAND='fd -t d -HL -E "{.git,__py*}/*"'
 
 # Set default options for the fzf app
 export FZF_DEFAULT_OPTS="-i -m --reverse --border --preview 'bat --theme ansi {}'"
@@ -91,29 +76,18 @@ setopt extended_glob
 # Prompt
 #=======
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+# No need to source if we're using starship
+# [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 #============
 # Keybindings
 #============
 
-# Keybindings for vi-mode
-#------------------------
-
-# Disabling this for now since I've set Caps Lock to be Escape when tapped
-# Use 'jk' to switch to Normal mode
-#bindkey 'jk' vi-cmd-mode
-
-# Keybindings for zsh-autosuggest
-# -------------------------------
-
-# Ctrl+space to accept current suggestion
-# Not sure if I really need this anymore. Will comment out for now.
-#bindkey '^ ' autosuggest-accept
-
 # Ctrl+f to move forward by one word. This makes it easier to use the autosuggest plugin.
 bindkey '^f' forward-word
+
+# Ctrl+b to move backwards by one word.
+bindkey '^b' backward-word
 
 ###########
 # Aliases #
@@ -123,13 +97,10 @@ bindkey '^f' forward-word
 # ls
 #===
 
-#alias ls='lsd'
 alias ls='exa --icons'
-#alias ll='ls -alF'
-#alias la='ls -A'
-#alias l='ls -CF'
 alias l.='ls -d .*(/,.,@)' # Read more about zsh glob qualifiers (i.e., everything in parentheses)
 alias ll='ls -l'
+alias lt='ls --tree'
 
 #====
 # cat
@@ -166,22 +137,12 @@ alias rg='rg --pcre2 --color always'
 # Make it so that colored output is retained even when piped
 alias fd='fd --color always'
 
-#========
-# lazygit
-#========
-
-# Ensure that lazygit is run with TERM=xterm-kitty
-alias lazygit='env TERM=xterm-kitty lazygit'
-
 #=====================
 # Administrative stuff
 #=====================
 
 # Package management
 # ------------------
-
-# Make pacman display colored output
-alias pacman='pacman --color auto'
 
 #======================
 # General purpose stuff
@@ -235,7 +196,7 @@ undot() {
 # Convert files into backup files
 # (Add the .bak extension to the files)
 bak() {
-	perl-rename 's/$/\.bak/' "$@"
+	rename 's/$/\.bak/' "$@"
 }
 
 # Make backup copy of file
@@ -247,7 +208,7 @@ cpbak() {
 
 # Convert backup files to regular files
 unbak() {
-	perl-rename 's/\.bak$//' "$@"
+	rename 's/\.bak$//' "$@"
 }
 
 # Create an alias to the perl-rename command
@@ -426,21 +387,16 @@ export SPLIT=v
 #export TMPDIR="/tmp"
 export KITTY_LISTEN_ON=1
 
-#================
-# Aesthetic stuff
-#================
+# Nix
+# ---
 
-# Import colorscheme from pywal asynchronously
-# Call cat via absolute path since 'bat' is aliased to 'cat'
-#(cat ~/.cache/wal/sequences &)
-(/usr/bin/cat ~/.cache/wal/sequences &)
+if [ -e /home/fahmi/.nix-profile/etc/profile.d/nix.sh ];then
+    . /home/fahmi/.nix-profile/etc/profile.d/nix.sh;
+fi # added by Nix installer
 
 ###############
 # Final inits #
 ###############
-
-# Miniconda
-[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
 
 # Init starship prompt
 eval "$(starship init zsh)"
