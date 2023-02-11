@@ -10,6 +10,7 @@ mason_null_ls.setup({
 		-- Python
 		"isort",
 		"flake8",
+		"pylint",
 		"black",
 		-- Javascript
 		"prettierd",

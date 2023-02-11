@@ -269,6 +269,9 @@ pipud() {
 # go
 # --
 
+# Add go to PATH
+export PATH="$PATH:/usr/local/go/bin"
+
 # Set GOPATH
 export GOPATH="/home/fahmi/.go"
 

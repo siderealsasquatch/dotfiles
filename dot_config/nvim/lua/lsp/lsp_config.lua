@@ -32,6 +32,8 @@ lsp.configure("sumneko_lua", {
 
 -- Configure completion menu
 local lspkind = require("lspkind")
+local cmp = require("cmp")
+local luasnip = require("luasnip")
 lsp.setup_nvim_cmp({
 	formatting = {
 		format = lspkind.cmp_format({
@@ -40,6 +42,30 @@ lsp.setup_nvim_cmp({
 			ellipsis_char = "...",
 		}),
 	},
+	mapping = lsp.defaults.cmp_mappings({
+		["<C-c>"] = cmp.mapping({
+			i = cmp.mapping.abort(),
+			c = cmp.mapping.close(),
+		}),
+
+		-- go to next placeholder in the snippet
+		["<C-e>"] = cmp.mapping(function(fallback)
+			if luasnip.jumpable(1) then
+				luasnip.jump(1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+
+		-- go to previous placeholder in the snippet
+		["<C-d>"] = cmp.mapping(function(fallback)
+			if luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+	}),
 })
 
 -- Use the default autocompletion mappings for now; configure them later
@@ -78,4 +104,8 @@ vim.diagnostic.config({
 	signs = true,
 })
 
+-- Set LuaSnips to use the honza snippets
+require("luasnip.loaders.from_snipmate").lazy_load()
+
+-- Convert this to Lua at some point.
 vim.cmd([[ autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
