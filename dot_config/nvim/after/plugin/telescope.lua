@@ -128,10 +128,12 @@ telescope.setup({
 	extensions = {
 		undo = {
 			side_by_side = true,
-			layout_strategy = "vertical",
-			layout_config = {
-				preview_height = 0.8,
-			},
+			-- layout_strategy = "dropdown",
+			-- sorting_strategy = "ascending",
+			-- layout_config = {
+			-- 	-- preview_height = 0.8,
+			-- 	prompt_position = "top",
+			-- },
 		},
 	},
 })
@@ -149,3 +151,4 @@ map("n", "<leader>fb", builtin.buffers, {})
 map("n", "<leader>fz", builtin.current_buffer_fuzzy_find, {})
 map("n", "<leader>fh", builtin.help_tags, {})
 map("n", "<leader>fm", builtin.marks, {})
+map("n", "<leader>fu", "<cmd>Telescope undo<CR>", {})
