@@ -77,6 +77,15 @@ return require("packer").startup(function(use)
 	-- Fancy buffer line
 	use({ "akinsho/bufferline.nvim", tag = "v3.*" })
 
+	-- File tree
+	use({
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v2.x",
+		requires = {
+			"MunifTanjim/nui.nvim",
+		},
+	})
+
 	-- Additional functionality
 	use("kylechui/nvim-surround")
 	use("windwp/nvim-autopairs")
