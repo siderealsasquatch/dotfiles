@@ -18,7 +18,7 @@ set.updatetime = 300
 -- Display
 set.termguicolors = true
 set.background = "dark"
-vim.cmd([[colorscheme catppuccin-mocha]])
+cmd([[colorscheme catppuccin-mocha]])
 set.signcolumn = "yes"
 
 -- Cursor
@@ -49,3 +49,7 @@ set.splitbelow = true
 -- Stuff for undo's
 set.undodir = os.getenv("HOME") .. "/.nvim/undo" -- need to create first
 set.undofile = true
+
+-- Code folding
+set.foldmethod = "expr"
+set.foldexpr = "nvim_treesitter#foldexpr()"
