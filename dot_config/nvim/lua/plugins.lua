@@ -86,6 +86,16 @@ return require("packer").startup(function(use)
 		},
 	})
 
+	-- Testing
+	use({
+		"nvim-neotest/neotest",
+		requires = {
+			"antoinemadec/FixCursorHold.nvim",
+		},
+	})
+	use("nvim-neotest/neotest-python")
+	use("nvim-neotest/neotest-go")
+
 	-- Additional functionality
 	use("kylechui/nvim-surround")
 	use("windwp/nvim-autopairs")
