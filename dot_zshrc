@@ -309,7 +309,11 @@ pipud() {
 # --
 
 # Set GOPATH
+# Don't need to set GOBIN as it defaults to $GOPATH/bin
 export GOPATH="/home/fahmi/.go"
+
+# Add ~/.go/bin to PATH
+export PATH="${PATH}:/home/fahmi/.go/bin"
 
 # R
 # -

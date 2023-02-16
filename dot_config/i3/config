@@ -28,8 +28,11 @@ bindsym $mod+Return exec kitty
 # kill focused window
 bindsym $mod+q kill
 
-# start rofi
+# Open the rofi application menu
 bindsym $mod+d exec rofi -show run
+
+# Open the rofi window menu
+bindsym $mod+y exec rofi -show window
 
 # change focus
 bindsym $mod+h focus left

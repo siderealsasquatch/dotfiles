@@ -41,6 +41,7 @@ null_ls.setup({
 	end,
 	sources = {
 		null_ls.builtins.formatting.gofmt,
+		null_ls.builtins.diagnostics.golangci_lint,
 	},
 })
 
