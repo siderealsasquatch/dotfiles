@@ -275,6 +275,10 @@ export PATH="$PATH:/usr/local/go/bin"
 # Set GOPATH
 export GOPATH="/home/fahmi/.go"
 
+# Add $GOPATH/bin to PATH
+# Don't need to set GOBIN since it defaults to $GOPATH/bin
+export PATH="${PATH}:/home/fahmi/.go/bin"
+
 # R
 # -
 

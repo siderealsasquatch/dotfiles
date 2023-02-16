@@ -10,7 +10,7 @@ lsp.ensure_installed({
 	"html",
 	"emmet_ls",
 	-- Lua
-	"sumneko_lua",
+	"lua_ls",
 	-- Python
 	"jedi_language_server",
 	-- Go
@@ -20,7 +20,7 @@ lsp.ensure_installed({
 })
 
 -- Fix Undefined global 'vim' for the lua language server
-lsp.configure("sumneko_lua", {
+lsp.configure("lua_ls", {
 	settings = {
 		Lua = {
 			diagnostics = {
