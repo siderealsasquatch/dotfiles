@@ -98,8 +98,8 @@ return require("packer").startup(function(use)
 	use("lewis6991/gitsigns.nvim")
 	use("jinh0/eyeliner.nvim")
 	use("lukas-reineke/indent-blankline.nvim")
-	-- use("akinsho/toggleterm.nvim")
-	use("voldikss/vim-floaterm")
+	-- use("voldikss/vim-floaterm")
+	use({ "akinsho/toggleterm.nvim", tag = "*" })
 	use("RRethy/vim-illuminate")
 	use({
 		"ggandor/leap.nvim",

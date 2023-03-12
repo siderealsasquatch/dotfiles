@@ -15,9 +15,11 @@ font pango:monospace 8
 #============
 
 # Set mod key to Alt
+# Don't remember why I originally switched to the windows key. Since my new
+# keyboard only has one windows key, I'll go back to the alt key.
+set $mod Mod1
 # Trying out windows key
-#set $mod Mod1
-set $mod Mod4
+# set $mod Mod4
 
 # Set mod key for floating windows to be Alt as well
 floating_modifier $mod
@@ -315,6 +317,9 @@ exec --no-startup-id pa-applet
 
 # Start syncthing-gtk
 exec --no-startup-id syncthing-gtk
+
+# Start blueman applet
+exec --no-startup-id blueman-applet
 
 # Start steam in silent mode
 #exec --no-startup-id /usr/bin/steam-runtime -silent %U

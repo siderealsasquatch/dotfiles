@@ -12,9 +12,12 @@ autocmd("TextYankPost", {
 
 -- File formatting based on file type
 autocmd("FileType", {
-	-- pattern = { "*.py", "*.r", "*.rmd" },
-	pattern = { "python", "r", "rmd" },
+	pattern = { "r", "rmd" },
 	command = [[setlocal expandtab tw=80]],
+})
+autocmd("FileType", {
+	pattern = { "python" },
+	command = [[setlocal expandtab tw=88]], -- Set to 88 specifically for black
 })
 autocmd("FileType", {
 	pattern = { "markdown" },

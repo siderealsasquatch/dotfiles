@@ -51,5 +51,5 @@ set.undodir = os.getenv("HOME") .. "/.nvim/undo" -- need to create first
 set.undofile = true
 
 -- Code folding
-set.foldmethod = "expr"
+set.foldmethod = "manual"
 set.foldexpr = "nvim_treesitter#foldexpr()"

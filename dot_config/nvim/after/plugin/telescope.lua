@@ -39,14 +39,14 @@ telescope.setup({
 				["<C-v>"] = actions.select_vertical,
 				["<C-t>"] = actions.select_tab,
 
-				["<c-d>"] = require("telescope.actions").delete_buffer,
+				-- ["<c-d>"] = require("telescope.actions").delete_buffer,
 
 				["<C-u>"] = actions.preview_scrolling_up,
 				["<C-d>"] = actions.preview_scrolling_down,
 
 				-- Use defaults for tab
-				-- ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-				-- ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+				["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+				["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
 				-- ["<Tab>"] = actions.close,
 				-- ["<S-Tab>"] = actions.close,
 				["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
@@ -67,8 +67,8 @@ telescope.setup({
 				-- Use defaults for tab
 				-- ["<Tab>"] = actions.close,
 				-- ["<S-Tab>"] = actions.close,
-				-- ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-				-- ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+				["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+				["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
 				["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
 				["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 
@@ -106,9 +106,10 @@ telescope.setup({
 		-- grep_string = {
 		-- 	theme = "ivy",
 		-- },
-		-- find_files = {
-		-- 	theme = "ivy",
-		-- },
+		find_files = {
+			-- theme = "ivy",
+			no_ignore = true,
+		},
 		-- oldfiles = {
 		-- 	theme = "ivy",
 		-- },

@@ -64,7 +64,7 @@ export FZF_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow -g '!.{git,
 # ctrl+t
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-# ctrl+r
+# alt+c
 export FZF_ALT_C_COMMAND='fd -t d -HL -E "{.git,__py*}"'
 
 # Set default options for the fzf app
@@ -454,4 +454,7 @@ eval "$(zoxide init zsh)"
 
 # Init any-nix-shell
 #any-nix-shell zsh --info-right | source /dev/stdin
-any-nix-shell zsh | source /dev/stdin
+# any-nix-shell zsh | source /dev/stdin
+
+# Hook direnv into zsh
+eval "$(direnv hook zsh)"
