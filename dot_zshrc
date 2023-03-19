@@ -98,12 +98,6 @@ setopt extended_glob
 # Keybindings
 #============
 
-# Keybindings for vi-mode
-#------------------------
-
-# Disabling this for now since I've set Caps Lock to be Escape when tapped
-# Use 'jk' to switch to Normal mode
-#bindkey 'jk' vi-cmd-mode
 
 # Keybindings for zsh-autosuggest
 # -------------------------------
@@ -114,6 +108,12 @@ setopt extended_glob
 
 # Ctrl+f to move forward by one word. This makes it easier to use the autosuggest plugin.
 bindkey '^f' forward-word
+
+# fzf
+# ---
+
+# Ctrl+v to call the fzf-cd-widget
+bindkey '^v' fzf-cd-widget
 
 ###########
 # Aliases #
