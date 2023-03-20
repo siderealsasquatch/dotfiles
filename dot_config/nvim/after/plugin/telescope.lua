@@ -106,9 +106,9 @@ telescope.setup({
 		-- grep_string = {
 		-- 	theme = "ivy",
 		-- },
-		-- find_files = {
-		-- 	theme = "ivy",
-		-- },
+		find_files = {
+			no_ignore = true,
+		},
 		-- oldfiles = {
 		-- 	theme = "ivy",
 		-- },
@@ -151,4 +151,5 @@ map("n", "<leader>sb", builtin.buffers, {})
 map("n", "<leader>sz", builtin.current_buffer_fuzzy_find, {})
 map("n", "<leader>sh", builtin.help_tags, {})
 map("n", "<leader>sm", builtin.marks, {})
+map("n", "<leader>sj", builtin.jumplist, {})
 map("n", "<leader>su", "<cmd>Telescope undo<CR>", {})

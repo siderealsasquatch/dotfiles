@@ -83,11 +83,20 @@ setopt extended_glob
 # Keybindings
 #============
 
+# General
+# -------
+
 # Ctrl+f to move forward by one word. This makes it easier to use the autosuggest plugin.
 bindkey '^f' forward-word
 
 # Ctrl+b to move backwards by one word.
 bindkey '^b' backward-word
+
+# fzf
+# ---
+
+# Ctrl+v to trigger the fzf-cd-widget
+bindkey '^v' fzf-cd-widget
 
 ###########
 # Aliases #

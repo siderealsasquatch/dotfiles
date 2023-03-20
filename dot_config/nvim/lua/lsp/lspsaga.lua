@@ -1,13 +1,18 @@
 -- Set up the "lspsaga" plugin. Note that we will be overwriting some of the keybindings
 -- that we defined for the autocompletions.
 
-require("lspsaga").setup()
+require("lspsaga").setup({
+	outline = {
+		win_width = 50,
+	},
+})
 
 -- Keymaps
 -- *******
 local map = vim.keymap.set
 
-map("n", "gd", "<cmd>Lspsaga lsp_finder<CR>")
+map("n", "gf", "<cmd>Lspsaga lsp_finder<CR>")
+map("n", "gd", "<cmd>Lspsaga goto_definition<CR>")
 map("n", "gp", "<cmd>Lspsaga peek_definition<CR>")
 map({ "n", "v" }, "<leader>vca", "<cmd>Lspsaga code_action<CR>")
 map("n", "<leader>vrn", "<cmd>Lspsaga rename<CR>")
