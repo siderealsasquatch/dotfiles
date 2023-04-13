@@ -22,6 +22,7 @@ mason_null_ls.setup({
 	},
 	automatic_installation = true,
 	automatic_setup = true,
+	handlers = {},
 })
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
