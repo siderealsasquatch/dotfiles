@@ -22,6 +22,7 @@ mason_null_ls.setup({
 	},
 	automatic_installation = true,
 	automatic_setup = true,
+	handlers = {},
 })
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -45,13 +46,10 @@ null_ls.setup({
 	},
 })
 
--- Required when `automatic_setup` is true
-mason_null_ls.setup_handlers()
-
 -- Keybindings
 -- ***********
 
 local map = vim.keymap.set
 
 -- Manually format buffer
-map("n", "<leader>bf", vim.lsp.buf.formatting)
+map("n", "<leader>bf", vim.lsp.buf.format)
