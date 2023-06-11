@@ -12,13 +12,13 @@ autocmd("TextYankPost", {
 
 -- File formatting based on file type
 autocmd("FileType", {
-	-- pattern = { "*.py", "*.r", "*.rmd" },
 	pattern = { "python", "r", "rmd" },
-	command = [[setlocal expandtab tw=80]],
+	command = [[setlocal expandtab tw=88]],
 })
 autocmd("FileType", {
 	pattern = { "markdown" },
-	command = [[setlocal expandtab ts=2 softtabstop=2 shiftwidth=2 tw=80]],
+	-- command = [[setlocal expandtab ts=2 softtabstop=2 shiftwidth=2 tw=80]],
+	command = [[setlocal expandtab ts=2 softtabstop=2 shiftwidth=2 tw=90]],
 })
 autocmd("FileType", {
 	pattern = { "javascript" },

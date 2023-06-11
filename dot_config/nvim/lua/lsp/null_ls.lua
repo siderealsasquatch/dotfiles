@@ -9,8 +9,7 @@ mason_null_ls.setup({
 		"stylua",
 		-- Python
 		"isort",
-		"flake8",
-		"pylint",
+		"ruff",
 		"black",
 		-- Javascript
 		"prettierd",
