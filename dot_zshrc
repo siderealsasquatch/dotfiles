@@ -124,7 +124,8 @@ bindkey '^v' fzf-cd-widget
 #===
 
 #alias ls='lsd'
-alias ls='exa --icons'
+# alias ls='exa --icons'
+alias ls='eza --icons'
 #alias ll='ls -alF'
 #alias la='ls -A'
 #alias l='ls -CF'

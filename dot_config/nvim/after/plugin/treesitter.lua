@@ -1,3 +1,4 @@
+-- Treesitter config
 require("nvim-treesitter.configs").setup({
 	ensure_installed = {
 		"help",
@@ -30,3 +31,15 @@ require("nvim-treesitter.configs").setup({
 		enable = true,
 	},
 })
+
+-- Treesitter context
+local context = require("treesitter-context")
+context.setup({
+	enable = true, -- ensure that the plugin is enabled
+})
+
+-- Keybindings
+local map = vim.keymap.set
+map("n", "<leader>c", function()
+	context.go_to_context()
+end, { silent = true })

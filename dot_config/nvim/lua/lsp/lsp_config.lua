@@ -1,8 +1,22 @@
+-- local mason = require("mason")
 local lsp = require("lsp-zero")
+
+-- Have Mason append its stuff to the path rather than prepend it so that in the event NeoVim
+-- is running in a virtual environment it's able to pick up the local libraries. This, of course,
+-- means that I'll need to make sure that all of the required libraries have been installed in
+-- the virtual env.
+-- For some reason this isn't working for Python in a conda environment. Will need to take a
+-- look at it in more detail later
+-- mason.setup({
+-- 	PATH = "append",
+-- })
+
+-- =======================================================================
+-- Might want to consider upgrading `lsp-zero` to the latest version (2.x)
+-- =======================================================================
+
 lsp.preset("recommended")
 
--- Figure out how to install a nix language server
--- either "rnix" or "nil_ls"; something about cargo not being executable
 lsp.ensure_installed({
 	-- Javascript and web stuff
 	"tsserver",
@@ -13,6 +27,7 @@ lsp.ensure_installed({
 	"lua_ls",
 	-- Python
 	"jedi_language_server",
+	-- "pyright",
 	-- Go
 	"gopls",
 	-- Markdown

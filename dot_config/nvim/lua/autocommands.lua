@@ -10,6 +10,14 @@ autocmd("TextYankPost", {
 	end,
 })
 
+-- Set filtypes based on extension
+autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = { "*.gohtml" },
+	callback = function()
+		vim.opt_local.filetype = "html"
+	end,
+})
+
 -- File formatting based on file type
 autocmd("FileType", {
 	pattern = { "r", "rmd" },
