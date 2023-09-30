@@ -20,3 +20,25 @@ require("nvim-treesitter.configs").setup({
 		enable = true,
 	},
 })
+
+-- Enable tree-sitter-context
+local context = require("treesitter-context")
+context.setup()
+
+-- Register custom parsers
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+parser_config.gotmpl = {
+	install_info = {
+		url = "https://github.com/ngalaiko/tree-sitter-go-template",
+		files = { "src/parser.c" },
+	},
+	filetype = "gotmpl",
+	-- used_by = {"gohtmltmpl", "gotexttmpl", "gotmpl", "yaml"}
+	used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "html" },
+}
+
+-- Keybindings
+local map = vim.keymap.set
+map("n", "<leader>tc", function()
+	context.go_to_context()
+end, { silent = true })

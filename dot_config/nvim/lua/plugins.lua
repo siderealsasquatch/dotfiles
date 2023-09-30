@@ -116,6 +116,7 @@ return require("packer").startup(function(use)
 			vim.g.matchup_matchparen_offscreen = { method = "popup" }
 		end,
 	})
+	use("nvim-treesitter/nvim-treesitter-context")
 
 	if packer_bootstrap then
 		require("packer").sync()

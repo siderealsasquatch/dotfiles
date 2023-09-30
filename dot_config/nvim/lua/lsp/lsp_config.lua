@@ -96,6 +96,16 @@ lsp.on_attach = function(client, bufnr)
 	map("n", "<leader>f", vim.lsp.buf.formatting, bufopts)
 end
 
+-- Skip loading language server based on filetype
+local autocmd = vim.api.nvim_create_autocmd
+autocmd({ "BufRead", "BufNewFile" }, {
+	-- pattern = { "*.gohtml", "gotmpl" },
+	pattern = { "gotmpl" },
+	callback = function()
+		lsp.skip_server_setup({ "gopls" })
+	end,
+})
+
 lsp.setup()
 
 vim.diagnostic.config({

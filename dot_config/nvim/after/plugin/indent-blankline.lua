@@ -1,4 +1,10 @@
-require("indent_blankline").setup({
-    show_current_context = true,
-    show_current_context_start = true -- might not even use this
+require("ibl").setup({
+	scope = {
+		enabled = true,
+		show_start = true,
+		show_end = false,
+		injected_languages = false,
+		highlight = { "Function", "Label" },
+		priority = 500,
+	},
 })

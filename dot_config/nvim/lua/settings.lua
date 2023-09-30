@@ -53,3 +53,7 @@ set.undofile = true
 -- Code folding
 set.foldmethod = "manual"
 set.foldexpr = "nvim_treesitter#foldexpr()"
+
+-- Spellcheck
+set.spelllang = "en_us"
+set.spell = true

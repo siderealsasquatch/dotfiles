@@ -10,6 +10,14 @@ autocmd("TextYankPost", {
 	end,
 })
 
+-- Registering filetypes
+autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = { "*.gohtml" },
+	callback = function()
+		vim.opt_local.filetype = "html"
+	end,
+})
+
 -- File formatting based on file type
 autocmd("FileType", {
 	pattern = { "python", "r", "rmd" },

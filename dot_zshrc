@@ -424,7 +424,7 @@ eval "$(zoxide init zsh)"
 #any-nix-shell zsh --info-right | source /dev/stdin
 any-nix-shell zsh | source /dev/stdin
 
-# miniconda stuff
+# Conda stuff
 __conda_setup="$('/home/fahmi/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"

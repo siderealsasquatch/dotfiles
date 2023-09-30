@@ -16,8 +16,8 @@ map("n", "<C-K>", "<C-W>k")
 map("n", "<C-L>", "<C-W>l")
 
 -- Buffers
--- Might not even need these since I'm using Telescope
-map("n", "<leader>]", ":bnext<CR>")
-map("n", "<leader>[", ":bprevious<CR>")
+-- Use the bindings in bufferline for cycling through buffers.
+-- map("n", "<leader>]", ":bnext<CR>")
+-- map("n", "<leader>[", ":bprevious<CR>")
 map("n", "<tab>", ":b#<CR>")
 map("n", "<C-C><C-D>", ":bd<CR>")
