@@ -23,6 +23,7 @@ lsp.ensure_installed({
 	"eslint",
 	"html",
 	"emmet_ls",
+	"tailwindcss",
 	-- Lua
 	"lua_ls",
 	-- Python
