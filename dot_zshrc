@@ -146,6 +146,25 @@ alias rg='rg --pcre2 --color always'
 # Make it so that colored output is retained even when piped
 alias fd='fd --color always'
 
+#=======
+# Zellij
+#=======
+
+# Start new session
+alias zs='zellij -s'
+
+# Attach to existing session
+alias za='zellij a'
+
+# List all sessions
+alias zl='zellij ls'
+
+# Kill session
+alias zk='zellij k'
+
+# Kill all sessions
+alias zka='zellij ka'
+
 #=====================
 # Administrative stuff
 #=====================
