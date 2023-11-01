@@ -34,6 +34,9 @@ export PATH="/usr/lib/ccache/bin:$PATH"
 # Set DISPLAY var for connecting to external X server
 export DISPLAY=localhost:0.0
 
+# Get the IP address from /etc/resolv.conf
+export WSL_LOCALHOST=$(awk '/nameserver/ {print $2}' /etc/resolv.conf)
+
 # node
 # ----
 
@@ -106,7 +109,7 @@ bindkey '^v' fzf-cd-widget
 # ls
 #===
 
-alias ls='exa --icons'
+alias ls='eza --icons'
 alias l.='ls -d .*(/,.,@)' # Read more about zsh glob qualifiers (i.e., everything in parentheses)
 alias ll='ls -l'
 alias lt='ls --tree'
