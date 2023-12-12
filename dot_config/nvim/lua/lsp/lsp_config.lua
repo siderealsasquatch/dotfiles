@@ -16,6 +16,7 @@ lsp.ensure_installed({
 	"jedi_language_server",
 	-- Go
 	"gopls",
+	"templ",
 	-- Markdown
 	"marksman",
 })

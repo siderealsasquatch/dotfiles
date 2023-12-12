@@ -10,6 +10,13 @@ autocmd("TextYankPost", {
 	end,
 })
 
+-- Adding filetypes
+vim.filetype.add({
+	extension = {
+		templ = "templ",
+	},
+})
+
 -- Registering filetypes
 autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = { "*.gohtml" },

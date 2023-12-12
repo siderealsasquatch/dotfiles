@@ -11,7 +11,7 @@ require("lspsaga").setup({
 -- *******
 local map = vim.keymap.set
 
-map("n", "gf", "<cmd>Lspsaga lsp_finder<CR>")
+map("n", "gf", "<cmd>Lspsaga finder<CR>")
 map("n", "gd", "<cmd>Lspsaga goto_definition<CR>")
 map("n", "gp", "<cmd>Lspsaga peek_definition<CR>")
 map({ "n", "v" }, "<leader>vca", "<cmd>Lspsaga code_action<CR>")

@@ -46,11 +46,11 @@ set("n", "<leader>ts", function()
 end)
 
 -- Show the output of the current test.
-vim.keymap.set("n", "<leader>toc", function()
+vim.keymap.set("n", "<leader>to", function()
 	neotest.output.open()
 end)
 
 -- Show the output of the all tests.
-vim.keymap.set("n", "<leader>top", function()
+vim.keymap.set("n", "<leader>ta", function()
 	neotest.output_panel.toggle()
 end)

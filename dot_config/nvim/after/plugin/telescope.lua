@@ -3,10 +3,11 @@ local builtin = require("telescope.builtin")
 local actions = require("telescope.actions")
 
 -- Initial telescope setup
--- Need to figure out how to make telescope a drop-down menu.
+-- Need to figure out how to make the "flex" layout work
 telescope.setup({
 	defaults = {
 		sorting_strategy = "ascending", -- puts the results directly under the prompt
+		layout_strategy = "vertical",
 		layout_config = {
 			-- Set preview_cutoff to 1 in order to enable file previews
 			-- Not sure if it needs to be set for each part of the previewer but I'll do

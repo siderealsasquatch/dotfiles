@@ -7,6 +7,7 @@ require("nvim-treesitter.configs").setup({
 		"lua",
 		"bash",
 		"go",
+		"templ",
 		"python",
 		"markdown",
 		"markdown_inline",
