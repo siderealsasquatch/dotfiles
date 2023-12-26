@@ -31,6 +31,7 @@ lsp.ensure_installed({
 	-- "pyright",
 	-- Go
 	"gopls",
+	"templ",
 	-- Markdown
 	"marksman",
 })

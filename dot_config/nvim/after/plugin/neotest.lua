@@ -46,11 +46,11 @@ set("n", "<leader>ts", function()
 end)
 
 -- Get the output of the current test
-set("n", "<leader>toc", function()
+set("n", "<leader>to", function()
 	neotest.output.open()
 end)
 
 -- Toggle the output panel
-set("n", "<leader>top", function()
+set("n", "<leader>ta", function()
 	neotest.output_panel.toggle()
 end)

@@ -1,6 +1,11 @@
 local global = vim.g
 --local map = vim.api.nvim_set_keymap
-local map = vim.keymap.set
+-- local map = vim.keymap.set
+
+local function map(mode, l, r, opts)
+	opts = opts or {}
+	vim.keymap.set(mode, l, r, opts)
+end
 
 -- Set leader key to <space>
 global.mapleader = " "
@@ -21,3 +26,10 @@ map("n", "<C-L>", "<C-W>l")
 -- map("n", "<leader>[", ":bprevious<CR>")
 map("n", "<tab>", ":b#<CR>")
 map("n", "<C-C><C-D>", ":bd<CR>")
+
+-- Copying to system clipboard
+map({ "v", "n" }, "<leader>y", '"+y')
+map("n", "<leader>yy", '"+yy')
+
+-- Pasting from system clipboard
+map({ "v", "n" }, "<leader>p", '"+p')

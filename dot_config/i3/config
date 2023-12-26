@@ -350,9 +350,9 @@ bindsym $mod+Shift+g exec steam-runtime
 # Start discord
 bindsym $mod+c exec discord
 
-# Start franz
+# Start ferdium
 # Might change this
-bindsym $mod+v exec franz
+bindsym $mod+v exec ferdium
 
 # Start firefox
 bindsym $mod+b exec firefox

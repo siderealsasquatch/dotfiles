@@ -124,8 +124,8 @@ bindkey '^v' fzf-cd-widget
 #===
 
 #alias ls='lsd'
-# alias ls='exa --icons'
-alias ls='eza --icons'
+alias ls='exa --icons'
+# alias ls='eza --icons'
 #alias ll='ls -alF'
 #alias la='ls -A'
 #alias l='ls -CF'
@@ -192,6 +192,16 @@ alias zk='zellij k'
 
 # Kill all sessions
 alias zka='zellij ka'
+
+# Delete session
+alias zd='zellij delete-session'
+
+#=====
+# Task
+#=====
+
+# Alias "go-task" to "task"
+alias task='go-task'
 
 #=====================
 # Administrative stuff

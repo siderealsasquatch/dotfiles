@@ -56,13 +56,14 @@ return require("packer").startup(function(use)
 
 	-- Linting and formatting
 	-- Configure these later
-	use("jose-elias-alvarez/null-ls.nvim")
+	-- use("jose-elias-alvarez/null-ls.nvim")
+	use("nvimtools/none-ls.nvim")
 	use("jay-babu/mason-null-ls.nvim")
 
 	-- Fuzzy finder
 	use({
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.1",
+		branch = "0.1.x",
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
 

@@ -2,6 +2,7 @@
 require("nvim-treesitter.configs").setup({
 	ensure_installed = {
 		"help",
+		"comment",
 		"make",
 		"ini",
 		"toml",
@@ -18,6 +19,7 @@ require("nvim-treesitter.configs").setup({
 		"lua",
 		"bash",
 		"go",
+		"templ",
 		"python",
 		"r",
 	},
