@@ -1,5 +1,1 @@
-require("settings")
-require("mappings")
-require("autocommands")
-require("lsp")
-require("plugins")
+require("config")
