@@ -1,21 +1,9 @@
--- Keybindings
-
 return {
 	"nvim-neotest/neotest",
 	dependencies = {
 		"antoinemadec/FixCursorHold.nvim",
 		"nvim-neotest/neotest-python",
 		"nvim-neotest/neotest-go",
-	},
-	opts = {
-		adapters = {
-			require("neotest-python"),
-			require("neotest-go"),
-		},
-		output = {
-			enabled = true,
-			open_on_run = true,
-		},
 	},
 	config = function()
 		-- get neotest namespace (api call creates or returns namespace)
@@ -29,8 +17,20 @@ return {
 			},
 		}, neotest_ns)
 
-		-- Keybindings
+		-- neotest config
 		local neotest = require("neotest")
+		neotest.setup({
+			adapters = {
+				require("neotest-python"),
+				require("neotest-go"),
+			},
+			output = {
+				enabled = true,
+				open_on_run = true,
+			},
+		})
+
+		-- Keybindings
 		local utils = require("utils")
 
 		-- Run the nearest test
