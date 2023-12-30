@@ -54,6 +54,16 @@ export STEAM_FRAME_FORCE_CLOSE=1
 
 export PATH=~/.npm-global/bin:${PATH}
 
+# rust
+# ----
+
+export PATH=~/.cargo/bin:${PATH}
+
+# tmux plugins
+# ------------
+
+export PATH=~/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
+
 # fzf
 # ---
 

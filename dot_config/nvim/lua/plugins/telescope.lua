@@ -153,14 +153,14 @@ return {
 		require("telescope").load_extension("undo")
 
 		-- Keybindings
-		utils.map("n", "<leader>sp", builtin.find_files, {})
-		utils.map("n", "<leader>so", builtin.oldfiles, {})
-		utils.map("n", "<leader>sg", builtin.live_grep, {})
-		utils.map("n", "<leader>ss", builtin.grep_string, {})
-		utils.map("n", "<leader>sb", builtin.buffers, {})
-		utils.map("n", "<leader>sz", builtin.current_buffer_fuzzy_find, {})
-		utils.map("n", "<leader>sh", builtin.help_tags, {})
-		utils.map("n", "<leader>sm", builtin.marks, {})
-		utils.map("n", "<leader>su", "<cmd>Telescope undo<CR>", {})
+		utils.map("n", "<leader>ff", builtin.find_files, {})
+		utils.map("n", "<leader>fo", builtin.oldfiles, {})
+		utils.map("n", "<leader>fg", builtin.live_grep, {})
+		utils.map("n", "<leader>fs", builtin.grep_string, {})
+		utils.map("n", "<leader>fb", builtin.buffers, {})
+		utils.map("n", "<leader>fz", builtin.current_buffer_fuzzy_find, {})
+		utils.map("n", "<leader>fh", builtin.help_tags, {})
+		utils.map("n", "<leader>fm", builtin.marks, {})
+		utils.map("n", "<leader>fu", "<cmd>Telescope undo<CR>", {})
 	end,
 }
