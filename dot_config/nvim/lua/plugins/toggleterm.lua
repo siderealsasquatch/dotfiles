@@ -1,23 +1,23 @@
 return {
 	"akinsho/toggleterm.nvim",
 	version = "*",
-	opts = {
-		size = 20,
-		open_mapping = [[<c-\>]],
-		hide_numbers = true,
-		shade_terminals = true,
-		shading_factor = 2,
-		start_in_insert = true,
-		insert_mappings = true,
-		persist_size = true,
-		direction = "float",
-		close_on_exit = true,
-		shell = vim.o.shell,
-		float_opts = {
-			border = "curved",
-		},
-	},
 	config = function()
+		require("toggleterm").setup({
+			size = 20,
+			open_mapping = [[<c-\>]],
+			hide_numbers = true,
+			shade_terminals = true,
+			shading_factor = 2,
+			start_in_insert = true,
+			insert_mappings = true,
+			persist_size = true,
+			direction = "float",
+			close_on_exit = true,
+			shell = vim.o.shell,
+			float_opts = {
+				border = "curved",
+			},
+		})
 		-- local augroup = vim.api.nvim_create_augroup
 		-- local autocmd = vim.api.nvim_create_autocmd
 		function _G.set_terminal_keymaps()
