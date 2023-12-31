@@ -1,5 +1,4 @@
 local set = vim.opt
-local cmd = vim.cmd
 
 -- Backups
 set.backup = false
@@ -18,7 +17,6 @@ set.updatetime = 300
 -- Display
 set.termguicolors = true
 set.background = "dark"
-cmd([[colorscheme catppuccin-mocha]])
 set.signcolumn = "yes"
 
 -- Cursor

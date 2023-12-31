@@ -10,15 +10,15 @@ autocmd("TextYankPost", {
 	end,
 })
 
--- Adding filetypes
+-- additional filetypes
 vim.filetype.add({
 	extension = {
 		templ = "templ",
 	},
 })
 
--- Registering filetypes
-autocmd({ "BufRead", "BufNewFile" }, {
+-- Set filtypes based on extension
+autocmd({ "BufNewFile", "BufRead" }, {
 	pattern = { "*.gohtml" },
 	callback = function()
 		vim.opt_local.filetype = "html"
@@ -29,6 +29,10 @@ autocmd({ "BufRead", "BufNewFile" }, {
 autocmd("FileType", {
 	pattern = { "python", "r", "rmd" },
 	command = [[setlocal expandtab tw=88]],
+})
+autocmd("FileType", {
+	pattern = { "python" },
+	command = [[setlocal expandtab tw=88]], -- Set to 88 specifically for black
 })
 autocmd("FileType", {
 	pattern = { "markdown" },

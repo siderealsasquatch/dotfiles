@@ -53,7 +53,7 @@ export FZF_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow -g '!.{git,
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # alt+c
-export FZF_ALT_C_COMMAND='fd -t d -HL -E "{.git,__py*}/*"'
+export FZF_ALT_C_COMMAND='fd -t d -HL -E "{.git,__py*}"'
 
 # Set default options for the fzf app
 export FZF_DEFAULT_OPTS="-i -m --reverse --border --preview 'bat --theme ansi {}'"
@@ -99,6 +99,12 @@ bindkey '^b' backward-word
 # ---
 
 # Ctrl+v to trigger the fzf-cd-widget
+bindkey '^v' fzf-cd-widget
+
+# fzf
+# ---
+
+# Ctrl+v to call the fzf-cd-widget
 bindkey '^v' fzf-cd-widget
 
 ###########
@@ -167,6 +173,35 @@ alias zk='zellij k'
 
 # Kill all sessions
 alias zka='zellij ka'
+
+#=======
+# Zellij
+#=======
+
+# Start new session
+alias zs='zellij -s'
+
+# Attach to existing session
+alias za='zellij a'
+
+# Start list existing sessions
+alias zl='zellij ls'
+
+# Kill session
+alias zk='zellij k'
+
+# Kill all sessions
+alias zka='zellij ka'
+
+# Delete session
+alias zd='zellij delete-session'
+
+#=====
+# Task
+#=====
+
+# Alias "go-task" to "task"
+alias task='go-task'
 
 #=====================
 # Administrative stuff
@@ -304,10 +339,10 @@ pipud() {
 export PATH="$PATH:/usr/local/go/bin"
 
 # Set GOPATH
+# Don't need to set GOBIN as it defaults to $GOPATH/bin
 export GOPATH="/home/fahmi/.go"
 
-# Add $GOPATH/bin to PATH
-# Don't need to set GOBIN since it defaults to $GOPATH/bin
+# Add ~/.go/bin to PATH
 export PATH="${PATH}:/home/fahmi/.go/bin"
 
 # R
