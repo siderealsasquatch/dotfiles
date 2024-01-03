@@ -4,10 +4,7 @@ export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH="/home/fahmi/.oh-my-zsh"
 
-#ZSH_THEME="powerlevel10k/powerlevel10k"
-#ZSH_THEME="spaceship"
-
-plugins=(git vi-mode direnv fzf fzf-tab ubuntu zsh-autosuggestions zsh-syntax-highlighting
+plugins=(git vi-mode direnv tmux fzf fzf-tab ubuntu zsh-autosuggestions zsh-syntax-highlighting
   nix-zsh-completions autoupdate)
 
 source $ZSH/oh-my-zsh.sh
@@ -57,11 +54,18 @@ export FZF_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow -g '!.{git,
 # ctrl+t
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+# Set options for <c-t> command
+export FZF_CTRL_T_OPTS="
+  --preview 'bat -n --color=always {}'
+  --preview-window hidden
+  --bind '?:toggle-preview'
+  --header '?: toggle file preview'"
+
 # alt+c
-export FZF_ALT_C_COMMAND='fd -t d -HL -E "{.git,__py*}"'
+export FZF_ALT_C_COMMAND='fd -t d --no-ignore -HL -E "{.git,__py*}" -E node_modules -E vendor'
 
 # Set default options for the fzf app
-export FZF_DEFAULT_OPTS="-i -m --reverse --border --preview 'bat --theme ansi {}'"
+export FZF_DEFAULT_OPTS="-i -m --reverse --border"
 
 # Final path entry
 # ----------------
@@ -424,6 +428,16 @@ cdl() {
 
 # Clear screen and list directory contents
 alias cls='clear && ls'
+
+# Jump to somewhere in the file system using fzf
+j() {
+    cd $(fd --color never -H -I -d 3 -t d \
+        -E '{.git,__py*}' \
+        -E node_modules \
+        -E vendor \
+        . ~ /mnt/e/ /mnt/g/syncthing/ \
+        | fzf)
+}
 
 #================================
 # Stuff for command line programs
