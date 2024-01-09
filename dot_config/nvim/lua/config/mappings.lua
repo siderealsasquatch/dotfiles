@@ -29,3 +29,6 @@ utils.map("n", "<leader>yy", '"+yy')
 
 -- Pasting from system clipboard
 utils.map({ "v", "n" }, "<leader>p", '"+p')
+
+-- Open netrw
+utils.map("n", "<leader>nt", ":Ex<CR>")

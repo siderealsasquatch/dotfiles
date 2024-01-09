@@ -1,3 +1,4 @@
+local global = vim.g
 local set = vim.opt
 
 -- Backups
@@ -57,7 +58,7 @@ set.spelllang = "en_us"
 set.spell = true
 
 -- Clipboard
-vim.g.clipboard = {
+global.clipboard = {
 	name = "win32yank-wsl",
 	copy = {
 		["+"] = "win32yank.exe -i --crlf",
@@ -68,3 +69,6 @@ vim.g.clipboard = {
 		["*"] = "win32yank.exe -o --lf",
 	},
 }
+
+-- Netrw settings
+global.netrw_banner = 0

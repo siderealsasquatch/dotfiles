@@ -435,7 +435,7 @@ j() {
         -E '{.git,__py*}' \
         -E node_modules \
         -E vendor \
-        . ~ /mnt/e/ /mnt/g/syncthing/ \
+        . ~ /mnt/e/ /mnt/d/syncthing/ /mnt/c/Users/Fahmi/ \
         | fzf)
 }
 
