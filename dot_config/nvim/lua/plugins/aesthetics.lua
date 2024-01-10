@@ -1,8 +1,17 @@
 return {
-	"catppuccin/nvim",
-	name = "catppuccin",
-	priority = 1000,
-	config = function()
-		vim.cmd([[colorscheme catppuccin-mocha]])
-	end,
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
+		config = function()
+			vim.cmd([[colorscheme catppuccin-mocha]])
+		end,
+	},
+	{
+		"prichrd/netrw.nvim",
+		lazy = false,
+		config = function()
+			require("netrw").setup()
+		end,
+	},
 }

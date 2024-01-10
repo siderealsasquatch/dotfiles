@@ -59,6 +59,7 @@ return {
 					"tsserver",
 					"eslint",
 					"html",
+					"htmx",
 					"emmet_ls",
 					"tailwindcss",
 					-- Lua
@@ -77,6 +78,27 @@ return {
 					lua_ls = function() -- Might get rid of this
 						local lua_opts = lsp_zero.nvim_lua_ls()
 						require("lspconfig").lua_ls.setup(lua_opts)
+					end,
+					html = function()
+						require("lspconfig").html.setup({
+							filetypes = { "hmtl", "templ" },
+						})
+					end,
+					htmx = function()
+						require("lspconfig").htmx.setup({
+							filetypes = { "hmtl", "templ" },
+						})
+					end,
+					tailwindcss = function()
+						require("lspconfig").tailwindcss.setup({
+							filetypes = { "hmtl", "templ", "javascript", "typescript" },
+							init_options = { userLanguages = { templ = "html" } },
+						})
+					end,
+					emmet_ls = function()
+						require("lspconfig").emmet_ls.setup({
+							filetypes = { "css", "hmtl", "templ" },
+						})
 					end,
 				},
 			})
