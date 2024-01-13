@@ -1,3 +1,4 @@
+local global = vim.g
 local set = vim.opt
 
 -- Backups
@@ -55,3 +56,6 @@ set.foldexpr = "nvim_treesitter#foldexpr()"
 -- Spell check
 set.spelllang = "en_us"
 set.spell = true
+
+-- Netrw settings
+global.netrw_banner = 0

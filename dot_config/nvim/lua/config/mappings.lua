@@ -17,9 +17,6 @@ utils.map("n", "<C-K>", "<C-W>k")
 utils.map("n", "<C-L>", "<C-W>l")
 
 -- Buffers
--- Use the keybinds defined for bufferline
--- utils.map("n", "<leader>]", ":bnext<CR>")
--- utils.map("n", "<leader>[", ":bprevious<CR>")
 utils.map("n", "<tab>", ":b#<CR>")
 utils.map("n", "<C-C><C-D>", ":bd<CR>")
 
@@ -29,3 +26,6 @@ utils.map("n", "<leader>yy", '"+yy')
 
 -- Pasting from system clipboard
 utils.map({ "v", "n" }, "<leader>p", '"+p')
+
+-- Open netrw
+utils.map("n", "<leader>nt", ":Ex<CR>")

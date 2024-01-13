@@ -5,7 +5,7 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		"jose-elias-alvarez/null-ls.nvim",
+		"nvimtools/none-ls.nvim",
 	},
 	config = function()
 		local lsp = require("lsp-zero")
@@ -37,8 +37,6 @@ return {
 			automatic_setup = true,
 			handlers = {},
 		})
-
-		-- Don't think I need the "on_attach" part but will keep it here just in case
 
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 		null_ls.setup({

@@ -74,11 +74,18 @@ export FZF_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow -g '!.{git,
 # ctrl+t
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+# Set options for <c-t> command
+export FZF_CTRL_T_OPTS="
+  --preview 'bat -n --color=always {}'
+  --preview-window hidden
+  --bind '?:toggle-preview'
+  --header '?: toggle file preview'"
+
 # alt+c
-export FZF_ALT_C_COMMAND='fd -t d -HL -E "{.git,__py*}"'
+export FZF_ALT_C_COMMAND='fd -t d --no-ignore -HL -E "{.git,__py*}" -E node_modules -E vendor'
 
 # Set default options for the fzf app
-export FZF_DEFAULT_OPTS="-i -m --reverse --border --preview 'bat --theme ansi {}'"
+export FZF_DEFAULT_OPTS="-i -m --reverse --border"
 
 # Final path entry
 # ----------------
@@ -417,18 +424,15 @@ cdl() {
 	cd "$@" && ls
 }
 
-# ls but with directories displayed before files
-#lsd() {
-	#ls --group-directories-first "$@"
-#}
-
-# Combine cdl and lsd
-#cdlsd() {
-	#cd "$@" && ls --group-directories-first
-#}
-
-# Clear screen and list directory contents
-alias cls='clear && ls'
+# Jump to somewhere in the file system using fzf
+j() {
+    cd $(fd --color never -H -I -d 3 -t d \
+        -E '{.git,__py*}' \
+        -E node_modules \
+        -E vendor \
+        . ~ /mnt/windows-shared/ /mnt/windows-wfh-software/syncthing/ \
+        | fzf)
+}
 
 #================================
 # Stuff for command line programs
