@@ -45,10 +45,10 @@ return {
 			incremental_selection = {
 				enable = true,
 				keymaps = {
-					init_selection = "<leader>t",
-					node_incremental = "<leader>t",
-					scope_incremental = "<leader>ts",
-					node_decremental = "<leader>td",
+					init_selection = "<leader>s",
+					node_incremental = "<leader>s",
+					scope_incremental = "<leader>ss",
+					node_decremental = "<leader>sd",
 				},
 			},
 			matchup = {

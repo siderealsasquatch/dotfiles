@@ -79,11 +79,12 @@ return {
 						local lua_opts = lsp_zero.nvim_lua_ls()
 						require("lspconfig").lua_ls.setup(lua_opts)
 					end,
-					html = function()
-						require("lspconfig").html.setup({
-							filetypes = { "hmtl", "templ" },
-						})
-					end,
+					-- Need to find some way to stop prettier from working with templ files
+					-- html = function()
+					-- 	require("lspconfig").html.setup({
+					-- 		filetypes = { "hmtl", "templ" },
+					-- 	})
+					-- end,
 					htmx = function()
 						require("lspconfig").htmx.setup({
 							filetypes = { "hmtl", "templ" },

@@ -10,9 +10,9 @@ return {
 		local gs = package.loaded.gitsigns
 
 		-- Navigation
-		utils.map("n", "]c", function()
+		utils.map("n", "]h", function()
 			if vim.wo.diff then
-				return "]c"
+				return "]h"
 			end
 			vim.schedule(function()
 				gs.next_hunk()
@@ -20,9 +20,9 @@ return {
 			return "<Ignore>"
 		end, { expr = true })
 
-		utils.map("n", "[c", function()
+		utils.map("n", "[h", function()
 			if vim.wo.diff then
-				return "[c"
+				return "[h"
 			end
 			vim.schedule(function()
 				gs.prev_hunk()

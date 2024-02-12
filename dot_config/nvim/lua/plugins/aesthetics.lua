@@ -10,8 +10,6 @@ return {
 	{
 		"prichrd/netrw.nvim",
 		lazy = false,
-		config = function()
-			require("netrw").setup()
-		end,
+		opts = {},
 	},
 }
