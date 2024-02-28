@@ -12,6 +12,7 @@ return {
 		-- Treesitter config
 		require("nvim-treesitter.configs").setup({
 			ensure_installed = {
+				"gitignore",
 				"comment",
 				"make",
 				"ini",
@@ -29,6 +30,7 @@ return {
 				"lua",
 				"bash",
 				"go",
+				"gomod",
 				"templ",
 				"python",
 				"r",
