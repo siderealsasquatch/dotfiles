@@ -1,68 +1,71 @@
 local utils = require("utils")
 
 return {
-	"jay-babu/mason-null-ls.nvim",
-	event = { "BufReadPre", "BufNewFile" },
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-		"nvimtools/none-ls.nvim",
+	{
+		"mfussenegger/nvim-lint",
+		event = {
+			"BufReadPre",
+			"BufNewFile",
+		},
+		config = function()
+			local lint = require("lint")
+
+			lint.linters_by_ft = {
+				javascript = { "eslint_d" },
+				typescript = { "eslint_d" },
+				python = { "ruff" },
+				go = { "golangcilint" },
+				sh = { "shellcheck" },
+			}
+
+			local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+
+			vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+				group = lint_augroup,
+				callback = function()
+					lint.try_lint()
+				end,
+			})
+
+			utils.map("n", "<leader>ll", function()
+				lint.try_lint()
+			end)
+		end,
 	},
-	config = function()
-		local lsp = require("lsp-zero")
-		local null_opts = lsp.build_options("null-ls", {})
-		local mason = require("mason")
-		local mason_null_ls = require("mason-null-ls")
-		local null_ls = require("null-ls")
+	{
+		"stevearc/conform.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			local conform = require("conform")
 
-		mason.setup()
-		mason_null_ls.setup({
-			ensure_installed = {
-				-- Lua
-				"stylua",
-				-- Python
-				"isort",
-				"ruff",
-				-- "flake8",
-				-- "pylint",
-				"black",
-				-- Javascript
-				"prettierd",
-				-- Go
-				"revive",
-				"goimports",
-				-- Shell
-				"shellcheck",
-			},
-			automatic_installation = true,
-			automatic_setup = true,
-			handlers = {},
-		})
+			conform.setup({
+				formatters_by_ft = {
+					javascript = { "prettierd" },
+					typescript = { "prettierd" },
+					css = { "prettierd" },
+					html = { "prettierd" },
+					htmldjango = { "djlint" },
+					json = { "prettierd" },
+					yaml = { "prettierd" },
+					markdown = { "prettierd" },
+					lua = { "stylua" },
+					python = { "isort", "black" },
+					go = { "gofumpt", "goimports" },
+				},
+				format_on_save = {
+					lsp_fallback = true,
+					async = false,
+					timeout_ms = 500,
+				},
+			})
 
-		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-		null_ls.setup({
-			on_attach = function(client, bufnr)
-				null_opts.on_attach(client, bufnr)
-				if client.server_capabilities.documentFormattingProvider then
-					vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-					vim.api.nvim_create_autocmd("BufWritePre", {
-						group = augroup,
-						buffer = bufnr,
-						callback = function()
-							vim.lsp.buf.format({ bufnr = bufnr })
-						end,
-					})
-				end
-			end,
-			sources = {
-				null_ls.builtins.formatting.gofmt,
-				null_ls.builtins.diagnostics.golangci_lint,
-			},
-		})
-
-		-- Keybindings
-		-- ***********
-
-		-- Manually format buffer
-		utils.map("n", "<leader>bf", vim.lsp.buf.format)
-	end,
+			utils.map({ "n", "v" }, "<leader>lf", function()
+				conform.format({
+					lsp_fallback = true,
+					async = false,
+					timeout_ms = 500,
+				})
+			end)
+		end,
+	},
 }

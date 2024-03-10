@@ -1,5 +1,3 @@
-local utils = require("utils")
-
 return {
 	"nvim-treesitter/nvim-treesitter",
 	event = { "BufReadPre", "BufNewFile" },
@@ -13,6 +11,7 @@ return {
 		require("nvim-treesitter.configs").setup({
 			ensure_installed = {
 				"comment",
+				"gitignore",
 				"make",
 				"ini",
 				"toml",
@@ -45,10 +44,10 @@ return {
 			incremental_selection = {
 				enable = true,
 				keymaps = {
-					init_selection = "<leader>t",
-					node_incremental = "<leader>t",
-					scope_incremental = "<leader>ts",
-					node_decremental = "<leader>td",
+					init_selection = "<leader>s",
+					node_incremental = "<leader>s",
+					scope_incremental = "<leader>ss",
+					node_decremental = "<leader>sd",
 				},
 			},
 			matchup = {
@@ -63,6 +62,8 @@ return {
 		})
 
 		-- Keybindings
+		local utils = require("utils")
+
 		utils.map("n", "<leader>c", function()
 			context.go_to_context()
 		end, { silent = true })

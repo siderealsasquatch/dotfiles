@@ -24,6 +24,7 @@ return {
 		},
 		config = function()
 			-- This is where all the LSP shenanigans will live
+			local lspconfig = require("lspconfig")
 			local lsp_zero = require("lsp-zero")
 			lsp_zero.extend_lspconfig()
 
@@ -53,7 +54,24 @@ return {
 			end)
 
 			require("mason").setup({})
+			require("mason-tool-installer").setup({
+				-- I'm using this exclusively for linters and formatters
+				ensure_installed = {
+					-- Linters
+					"eslint_d",
+					"golangci-lint",
+					-- Formatters
+					"stylua",
+					"black",
+					"isort",
+					"djlint",
+					"gofumpt",
+					"goimports",
+					"prettierd",
+				},
+			})
 			require("mason-lspconfig").setup({
+				-- I'm using this exclusively for LSPs
 				ensure_installed = {
 					-- Javascript and web stuff
 					"tsserver",
@@ -76,22 +94,31 @@ return {
 					lsp_zero.default_setup,
 					lua_ls = function() -- Might get rid of this
 						local lua_opts = lsp_zero.nvim_lua_ls()
-						require("lspconfig").lua_ls.setup(lua_opts)
+						lspconfig.lua_ls.setup(lua_opts)
+					end,
+					gopls = function()
+						lspconfig.gopls.setup({
+							settings = {
+								gopls = {
+									gofumpt = true,
+								},
+							},
+						})
 					end,
 					htmx = function()
-						require("lspconfig").htmx.setup({
-							filetypes = { "hmtl", "templ" },
+						lspconfig.htmx.setup({
+							filetypes = { "hmtl", "htmldjango", "templ" },
 						})
 					end,
 					tailwindcss = function()
-						require("lspconfig").tailwindcss.setup({
-							filetypes = { "hmtl", "templ", "javascript", "typescript" },
+						lspconfig.tailwindcss.setup({
+							filetypes = { "hmtl", "htmldjango", "templ", "javascript", "typescript" },
 							init_options = { userLanguages = { templ = "html" } },
 						})
 					end,
 					emmet_ls = function()
-						require("lspconfig").emmet_ls.setup({
-							filetypes = { "css", "hmtl", "templ" },
+						lspconfig.emmet_ls.setup({
+							filetypes = { "css", "hmtl", "htmldjango", "templ" },
 						})
 					end,
 				},

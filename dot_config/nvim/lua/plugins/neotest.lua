@@ -1,6 +1,6 @@
 return {
 	"nvim-neotest/neotest",
-	lazy = true,
+	lazy = false,
 	dependencies = {
 		"antoinemadec/FixCursorHold.nvim",
 		"nvim-neotest/neotest-python",

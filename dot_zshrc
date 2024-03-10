@@ -84,7 +84,7 @@ export FZF_CTRL_T_OPTS="
 # alt+c
 export FZF_ALT_C_COMMAND='fd -t d --no-ignore -HL -E "{.git,__py*}" -E node_modules -E vendor'
 
-# Set default options for the fzf app
+# Set default options for the fzf app which apply to all modes
 export FZF_DEFAULT_OPTS="-i -m --reverse --border"
 
 # Final path entry
@@ -437,11 +437,6 @@ j() {
 #================================
 # Stuff for command line programs
 #================================
-
-# Note: all of the autojump stuff is handled by the autojump plugin so I no longer need to
-# source the autojump script.
-#
-# Will stop using autojump until the AUR package maintainer fixes it and use z instead.
 
 # z
 # -
