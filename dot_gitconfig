@@ -1,15 +1,14 @@
 [user]
 	email = fnugraha@gmail.com
 	name = Fahmi Adi Nugraha
-
 [core]
 	pager = delta -n --dark
-
 [credential]
 	helper = cache
-
 [safe]
     # Probably not a good idea to do this but will keep it for now until I
     # figure out how to add a specific directory as well as all of the files
     # and directories under it.
     directory = *
+[init]
+	defaultBranch = main

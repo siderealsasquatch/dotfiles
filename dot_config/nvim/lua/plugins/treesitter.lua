@@ -1,5 +1,3 @@
-local utils = require("utils")
-
 return {
 	"nvim-treesitter/nvim-treesitter",
 	event = { "BufReadPre", "BufNewFile" },
@@ -34,6 +32,10 @@ return {
 				"templ",
 				"python",
 				"r",
+				"c_sharp",
+				"ocaml",
+				"c",
+				"dockerfile",
 			},
 			-- Install parsers synchronously (only applied to `ensure_installed`)
 			sync_install = false,
@@ -65,6 +67,8 @@ return {
 		})
 
 		-- Keybindings
+		local utils = require("utils")
+
 		utils.map("n", "<leader>c", function()
 			context.go_to_context()
 		end, { silent = true })

@@ -68,13 +68,15 @@ return {
 					"gofumpt",
 					"goimports",
 					"prettierd",
+					"ocamlformat",
+					"clang-format",
 				},
 			})
 			require("mason-lspconfig").setup({
 				-- I'm using this specifically for LSPs
 				ensure_installed = {
 					-- Javascript and web stuff
-					"tsserver",
+					"ts_ls",
 					"html",
 					"htmx",
 					"emmet_ls",
@@ -84,11 +86,22 @@ return {
 					-- Python
 					"jedi_language_server",
 					-- "pyright",
+					-- "basedpyright",
+					-- "pylyzer",
 					-- Go
 					"gopls",
 					"templ",
+					-- C
+					"clangd",
+					-- C#
+					"omnisharp_mono",
+					-- OCaml
+					"ocamllsp",
 					-- Markdown
 					"marksman",
+					-- Docker stuff
+					"dockerls",
+					"docker_compose_language_service",
 				},
 				handlers = {
 					lsp_zero.default_setup,

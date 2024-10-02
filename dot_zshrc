@@ -5,7 +5,7 @@ export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 export ZSH="/home/fahmi/.oh-my-zsh"
 
 plugins=(git vi-mode direnv tmux fzf fzf-tab ubuntu zsh-autosuggestions zsh-syntax-highlighting
-  nix-zsh-completions autoupdate)
+  nix-zsh-completions autoupdate docker docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -431,11 +431,11 @@ alias cls='clear && ls'
 
 # Jump to somewhere in the file system using fzf
 j() {
-    cd $(fd --color never -H -I -d 3 -t d \
+    cd $(fd --color never -H -I -d 4 -t d \
         -E '{.git,__py*}' \
         -E node_modules \
         -E vendor \
-        . ~ /mnt/e/ /mnt/d/syncthing/ /mnt/c/Users/Fahmi/ \
+        . ~ /mnt/f/ /mnt/d/ /mnt/c/Users/Fahmi/ \
         | fzf)
 }
 
@@ -500,15 +500,27 @@ eval "$(zoxide init zsh)"
 #any-nix-shell zsh --info-right | source /dev/stdin
 any-nix-shell zsh | source /dev/stdin
 
-# Conda stuff
-__conda_setup="$('/home/fahmi/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# uv stuff
+. "$HOME/.cargo/env"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/fahmi/mambaforge/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/fahmi/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/fahmi/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/fahmi/mambaforge/etc/profile.d/conda.sh" ]; then
+        . "/home/fahmi/mambaforge/etc/profile.d/conda.sh"
     else
-        export PATH="/home/fahmi/miniconda3/bin:$PATH"
+        export PATH="/home/fahmi/mambaforge/bin:$PATH"
     fi
 fi
 unset __conda_setup
+
+if [ -f "/home/fahmi/mambaforge/etc/profile.d/mamba.sh" ]; then
+    . "/home/fahmi/mambaforge/etc/profile.d/mamba.sh"
+fi
+# <<< conda initialize <<<
+
+# opam init
+[[ ! -r '/home/fahmi/.opam/opam-init/init.zsh' ]] || source '/home/fahmi/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
