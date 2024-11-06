@@ -21,6 +21,7 @@ return {
 		dependencies = {
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "williamboman/mason-lspconfig.nvim" },
+			{ "Hoffs/omnisharp-extended-lsp.nvim" },
 		},
 		config = function()
 			-- This is where all the LSP shenanigans will live
@@ -60,10 +61,10 @@ return {
 					-- Linters
 					"eslint_d",
 					"golangci-lint",
+					"ruff",
+					"mypy",
 					-- Formatters
 					"stylua",
-					"black",
-					"isort",
 					"djlint",
 					"gofumpt",
 					"goimports",
@@ -84,17 +85,15 @@ return {
 					-- Lua
 					"lua_ls",
 					-- Python
-					"jedi_language_server",
-					-- "pyright",
-					-- "basedpyright",
-					-- "pylyzer",
+					"basedpyright",
 					-- Go
 					"gopls",
 					"templ",
 					-- C
 					"clangd",
 					-- C#
-					"omnisharp_mono",
+					-- "omnisharp_mono",
+					"omnisharp",
 					-- OCaml
 					"ocamllsp",
 					-- Markdown
@@ -114,6 +113,19 @@ return {
 							settings = {
 								gopls = {
 									gofumpt = true,
+								},
+							},
+						})
+					end,
+					basedpyright = function()
+						lspconfig.basedpyright.setup({
+							settings = {
+								basedpyright = {
+									disableOrganizeImports = true,
+									analysis = {
+										typeCheckingMode = "off",
+										autoImportCompletions = true,
+									},
 								},
 							},
 						})
@@ -139,6 +151,54 @@ return {
 					emmet_ls = function()
 						lspconfig.emmet_ls.setup({
 							filetypes = { "css", "hmtl", "htmldjango", "templ" },
+						})
+					end,
+					omnisharp = function()
+						lspconfig.omnisharp.setup({
+							cmd = {
+								"dotnet",
+								"/home/fahmi/src/omnisharp_roslyn/omnisharp-linux-x64-net6.0/OmniSharp.dll",
+							},
+							on_attach = function(client, bufnr)
+								local bufopts = { noremap = true, silent = true, buffer = bufnr }
+
+								utils.map(
+									"n",
+									"gf",
+									"<cmd>lua require('omnisharp_extended').lsp_references()<CR>",
+									bufopts
+								)
+								utils.map(
+									"n",
+									"gi",
+									"<cmd>lua require('omnisharp_extended').lsp_implementation()<cr>",
+									bufopts
+								)
+								utils.map("n", "gd", "<cmd>lua require('omnisharp_extended').lsp_definition()<CR>")
+								utils.map("n", "gD", "<cmd>Lspsaga peek_definition<CR>")
+								utils.map(
+									"n",
+									"gt",
+									"<cmd>lua require('omnisharp_extended').lsp_type_definition()<cr>",
+									bufopts
+								)
+								utils.map("n", "gT", "<cmd>Lspsaga peek_type_definition<cr>", bufopts)
+								utils.map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", bufopts)
+								utils.map({ "n", "v" }, "<leader>vca", "<cmd>Lspsaga code_action<CR>", bufopts)
+								utils.map("n", "<leader>vrn", "<cmd>Lspsaga rename<CR>", bufopts)
+								utils.map("n", "ec", "<cmd>Lspsaga show_cursor_diagnostics<CR>", bufopts)
+								utils.map("n", "el", "<cmd>Lspsaga show_line_diagnostics<CR>", bufopts)
+								utils.map("n", "eb", "<cmd>Lspsaga show_buf_diagnostics<CR>", bufopts)
+								utils.map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", bufopts)
+								utils.map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", bufopts)
+								utils.map("n", "K", "<cmd>Lspsaga hover_doc<CR>", bufopts)
+								utils.map("n", "<leader>o", "<cmd>Lspsaga outline<CR>", bufopts)
+							end,
+							settings = {
+								RoslynExtensionsOptions = {
+									EnableAnalyzersSupport = true,
+								},
+							},
 						})
 					end,
 				},

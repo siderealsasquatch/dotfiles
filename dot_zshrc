@@ -416,16 +416,6 @@ cdl() {
 	cd "$@" && ls
 }
 
-# ls but with directories displayed before files
-#lsd() {
-	#ls --group-directories-first "$@"
-#}
-
-# Combine cdl and lsd
-#cdlsd() {
-	#cd "$@" && ls --group-directories-first
-#}
-
 # Clear screen and list directory contents
 alias cls='clear && ls'
 
@@ -438,6 +428,14 @@ j() {
         . ~ /mnt/f/ /mnt/d/ /mnt/c/Users/Fahmi/ \
         | fzf)
 }
+
+# Use walk
+function lk {
+  cd "$(walk --icons "$@")"
+}
+
+# Create shorter alias for yazi
+alias yz='yazi'
 
 #================================
 # Stuff for command line programs
@@ -503,24 +501,18 @@ any-nix-shell zsh | source /dev/stdin
 # uv stuff
 . "$HOME/.cargo/env"
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/fahmi/mambaforge/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/fahmi/mambaforge/etc/profile.d/conda.sh" ]; then
-        . "/home/fahmi/mambaforge/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/fahmi/mambaforge/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
-if [ -f "/home/fahmi/mambaforge/etc/profile.d/mamba.sh" ]; then
-    . "/home/fahmi/mambaforge/etc/profile.d/mamba.sh"
-fi
-# <<< conda initialize <<<
-
 # opam init
 [[ ! -r '/home/fahmi/.opam/opam-init/init.zsh' ]] || source '/home/fahmi/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'micromamba shell init' !!
+export MAMBA_EXE='/home/fahmi/.local/bin/micromamba';
+export MAMBA_ROOT_PREFIX='/home/fahmi/micromamba';
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    alias micromamba="$MAMBA_EXE"  # Fallback on help from micromamba activate
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<

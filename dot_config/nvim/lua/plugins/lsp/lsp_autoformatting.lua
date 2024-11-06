@@ -49,7 +49,7 @@ return {
 					yaml = { "prettierd" },
 					markdown = { "prettierd" },
 					lua = { "stylua" },
-					python = { "isort", "black" },
+					python = { "ruff_format", "ruff_organize_imports" },
 					go = { "gofumpt", "goimports" },
 				},
 				format_on_save = {

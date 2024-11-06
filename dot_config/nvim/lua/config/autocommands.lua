@@ -43,3 +43,7 @@ autocmd("FileType", {
 	pattern = { "javascript" },
 	command = [[setlocal expandtab ts=2 softtabstop=2 shiftwidth=2 tw=80]],
 })
+autocmd("FileType", {
+	pattern = { "c" },
+	command = [[setlocal expandtab ts=2 softtabstop=2 shiftwidth=2 tw=90]],
+})
