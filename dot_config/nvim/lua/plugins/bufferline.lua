@@ -7,7 +7,7 @@ return {
 	config = function()
 		require("bufferline").setup({
 			options = {
-				separator_style = "slant",
+				-- separator_style = "slant",
 				color_icons = true,
 				diagnostics = "nvim_lsp",
 			},

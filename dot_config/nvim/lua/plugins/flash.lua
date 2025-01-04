@@ -43,6 +43,7 @@ return {
 			desc = "Treesitter Search",
 		},
 		{
+			-- Need to change this to something else later
 			"<c-s>",
 			mode = { "c" },
 			function()

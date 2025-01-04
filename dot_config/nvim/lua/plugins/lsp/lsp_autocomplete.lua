@@ -59,12 +59,28 @@ return {
 				-- ["<C-e>"] = cmp_action.toggle_completion(),
 
 				-- tab complete
-				["<Tab>"] = cmp_action.tab_complete(),
-				["<S-Tab>"] = cmp.mapping.select_prev_item(),
+				-- ["<Tab>"] = cmp_action.tab_complete(),
+				-- ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+				["<C-p>"] = cmp.mapping(function()
+					if cmp.visible() then
+						cmp.select_prev_item({ behavior = "insert" })
+					else
+						cmp.complete()
+					end
+				end),
+				["<C-n>"] = cmp.mapping(function()
+					if cmp.visible() then
+						cmp.select_next_item({ behavior = "insert" })
+					else
+						cmp.complete()
+					end
+				end),
 
 				-- navigate between snippet placeholder
-				["<C-n>"] = cmp_action.luasnip_jump_forward(),
-				["<C-p>"] = cmp_action.luasnip_jump_backward(),
+				-- ["<C-n>"] = cmp_action.luasnip_jump_forward(),
+				-- ["<C-p>"] = cmp_action.luasnip_jump_backward(),
+				["<C-f>"] = cmp_action.luasnip_jump_forward(),
+				["<C-e>"] = cmp_action.luasnip_jump_backward(),
 
 				-- scroll documentation window
 				["<C-d>"] = cmp.mapping.scroll_docs(5),

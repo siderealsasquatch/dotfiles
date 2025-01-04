@@ -434,6 +434,11 @@ j() {
         | fzf)
 }
 
+# Use walk
+lk() {
+  cd "$(walk --icons "$@")"
+}
+
 #================================
 # Stuff for command line programs
 #================================
@@ -482,9 +487,6 @@ export KITTY_LISTEN_ON=1
 # Final inits #
 ###############
 
-# Miniconda
-[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
-
 # Init starship prompt
 eval "$(starship init zsh)"
 
@@ -497,3 +499,25 @@ eval "$(zoxide init zsh)"
 
 # Hook direnv into zsh
 eval "$(direnv hook zsh)"
+
+# uv stuff
+. "$HOME/.cargo/env"
+
+# opam init
+[[ ! -r '/home/fahmi/.opam/opam-init/init.zsh' ]] || source '/home/fahmi/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+
+# gcloud-cli
+. /etc/profile.d/google-cloud-cli.sh
+
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'micromamba shell init' !!
+export MAMBA_EXE='/home/fahmi/.local/bin/micromamba';
+export MAMBA_ROOT_PREFIX='/home/fahmi/micromamba';
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    alias micromamba="$MAMBA_EXE"  # Fallback on help from micromamba activate
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<

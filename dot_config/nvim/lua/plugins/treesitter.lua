@@ -13,6 +13,7 @@ return {
 				"comment",
 				"gitignore",
 				"make",
+				"just",
 				"ini",
 				"toml",
 				"yaml",
@@ -31,6 +32,8 @@ return {
 				"templ",
 				"python",
 				"r",
+				"ocaml",
+				"c",
 			},
 			-- Install parsers synchronously (only applied to `ensure_installed`)
 			sync_install = false,

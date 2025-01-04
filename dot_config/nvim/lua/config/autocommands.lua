@@ -35,10 +35,10 @@ autocmd("FileType", {
 	command = [[setlocal expandtab tw=88]], -- Set to 88 specifically for black
 })
 autocmd("FileType", {
-	pattern = { "markdown" },
+	pattern = { "markdown", "javascript" },
 	command = [[setlocal expandtab ts=2 softtabstop=2 shiftwidth=2 tw=90]],
 })
 autocmd("FileType", {
-	pattern = { "javascript" },
+	pattern = { "c", "cpp" },
 	command = [[setlocal expandtab ts=2 softtabstop=2 shiftwidth=2 tw=80]],
 })

@@ -13,7 +13,7 @@ return {
 			lint.linters_by_ft = {
 				javascript = { "eslint_d" },
 				typescript = { "eslint_d" },
-				python = { "ruff" },
+				python = { "ruff", "mypy" },
 				go = { "golangcilint" },
 				sh = { "shellcheck" },
 			}
@@ -49,7 +49,7 @@ return {
 					yaml = { "prettierd" },
 					markdown = { "prettierd" },
 					lua = { "stylua" },
-					python = { "isort", "black" },
+					python = { "ruff_format", "ruff_organize_imports" },
 					go = { "gofumpt", "goimports" },
 				},
 				format_on_save = {

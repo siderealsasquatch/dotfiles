@@ -60,21 +60,23 @@ return {
 					-- Linters
 					"eslint_d",
 					"golangci-lint",
+					"ruff",
+					"mypy",
 					-- Formatters
 					"stylua",
-					"black",
-					"isort",
 					"djlint",
 					"gofumpt",
 					"goimports",
 					"prettierd",
+					"ocamlformat",
+					"clang-format",
 				},
 			})
 			require("mason-lspconfig").setup({
 				-- I'm using this exclusively for LSPs
 				ensure_installed = {
 					-- Javascript and web stuff
-					"tsserver",
+					"ts_ls",
 					"eslint",
 					"html",
 					"emmet_ls",
@@ -82,11 +84,14 @@ return {
 					-- Lua
 					"lua_ls",
 					-- Python
-					"jedi_language_server",
-					-- "pyright",
+					"basedpyright",
 					-- Go
 					"gopls",
 					"templ",
+					-- OCaml
+					"ocamllsp",
+					-- C
+					"clangd",
 					-- Markdown
 					"marksman",
 				},
@@ -121,6 +126,15 @@ return {
 							filetypes = { "css", "hmtl", "htmldjango", "templ" },
 						})
 					end,
+					basedpyright = function()
+						lspconfig.basedpyright.setup({
+							disableOrganizeImports = true,
+							analysis = {
+								autoImportCompletions = true,
+								typeCheckingMode = "off",
+							},
+						})
+					end,
 				},
 			})
 
@@ -132,7 +146,7 @@ return {
 			})
 
 			vim.diagnostic.config({
-				virtual_text = false,
+				-- virtual_text = false,
 				severity_sort = true,
 				float = {
 					-- style = "minimal",
@@ -143,7 +157,7 @@ return {
 				},
 			})
 
-			vim.cmd([[ autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
+			-- vim.cmd([[ autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
 		end,
 	},
 }
