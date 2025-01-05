@@ -16,10 +16,15 @@ utils.map("n", "<C-J>", "<C-W>j")
 utils.map("n", "<C-K>", "<C-W>k")
 utils.map("n", "<C-L>", "<C-W>l")
 
+-- Quickfix list
+utils.map("n", "<C-M-j>", "<cmd>cnext<CR>")
+utils.map("n", "<C-M-k>", "<cmd>cprev<CR>")
+utils.map("n", "<leader>co", "<cmd>copen<CR>")
+utils.map("n", "<leader>cc", "<cmd>cclose<CR>")
+
 -- Buffers
--- Use the keybinds defined for bufferline
--- utils.map("n", "<leader>]", ":bnext<CR>")
--- utils.map("n", "<leader>[", ":bprevious<CR>")
+utils.map("n", "<leader>]", ":bnext<CR>")
+utils.map("n", "<leader>[", ":bprevious<CR>")
 utils.map("n", "<tab>", ":b#<CR>")
 utils.map("n", "<C-C><C-D>", ":bd<CR>")
 

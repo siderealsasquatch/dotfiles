@@ -1,62 +1,37 @@
-local utils = require("utils")
-
 return {
-	{
-		"nvimdev/lspsaga.nvim",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
-		config = function()
-			require("lspsaga").setup({
-				outline = {
-					win_width = 50,
-				},
-			})
-		end,
-	},
 	{
 		"neovim/nvim-lspconfig",
 		cmd = { "LspInfo", "LspInstall", "LspStart" },
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
-			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "williamboman/mason-lspconfig.nvim" },
-			{ "Hoffs/omnisharp-extended-lsp.nvim" },
+			"saghen/blink.cmp",
+			"williamboman/mason-lspconfig.nvim",
 		},
 		config = function()
 			-- This is where all the LSP shenanigans will live
 			local lspconfig = require("lspconfig")
-			local lsp_zero = require("lsp-zero")
-			lsp_zero.extend_lspconfig()
 
-			lsp_zero.on_attach(function(client, bufnr)
-				-- see :help lsp-zero-keybindings
-				-- to learn the available actions
-				-- lsp_zero.default_keymaps({ buffer = bufnr })
-				local bufopts = { noremap = true, silent = true, buffer = bufnr }
+			vim.api.nvim_create_autocmd("LspAttach", {
+				callback = function(event)
+					local opts = { buffer = event.buf }
 
-				-- LpsSaga
-				utils.map("n", "gf", "<cmd>Lspsaga finder<CR>", bufopts)
-				utils.map("n", "gi", "<cmd>Lspsaga finder imp<cr>", bufopts)
-				utils.map("n", "gd", "<cmd>Lspsaga goto_definition<CR>")
-				utils.map("n", "gD", "<cmd>Lspsaga peek_definition<CR>")
-				utils.map("n", "gt", "<cmd>Lspsaga goto_type_definition<cr>", bufopts)
-				utils.map("n", "gT", "<cmd>Lspsaga peek_type_definition<cr>", bufopts)
-				utils.map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", bufopts)
-				utils.map({ "n", "v" }, "<leader>vca", "<cmd>Lspsaga code_action<CR>", bufopts)
-				utils.map("n", "<leader>vrn", "<cmd>Lspsaga rename<CR>", bufopts)
-				utils.map("n", "ec", "<cmd>Lspsaga show_cursor_diagnostics<CR>", bufopts)
-				utils.map("n", "el", "<cmd>Lspsaga show_line_diagnostics<CR>", bufopts)
-				utils.map("n", "eb", "<cmd>Lspsaga show_buf_diagnostics<CR>", bufopts)
-				utils.map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", bufopts)
-				utils.map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", bufopts)
-				utils.map("n", "K", "<cmd>Lspsaga hover_doc<CR>", bufopts)
-				utils.map("n", "<leader>o", "<cmd>Lspsaga outline<CR>", bufopts)
-			end)
+					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+					vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+					vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
+					vim.keymap.set("n", "gri", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+					vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
+					vim.keymap.set("n", "grr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+					vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
+					vim.keymap.set("n", "grn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+					vim.keymap.set("n", "gO", "<cmd>lua vim.lsp.buf.document_symbol()<cr>", opts)
+					vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
+					vim.keymap.set({ "n", "v" }, "gra", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+				end,
+			})
 
 			require("mason").setup({})
 			require("mason-tool-installer").setup({
-				-- I'm using this specifically for linters and formatters
+				-- I'm using this exclusively for linters and formatters
 				ensure_installed = {
 					-- Linters
 					"eslint_d",
@@ -73,13 +48,14 @@ return {
 					"clang-format",
 				},
 			})
-			require("mason-lspconfig").setup({
-				-- I'm using this specifically for LSPs
+			local mason_lspconfig = require("mason-lspconfig")
+			mason_lspconfig.setup({
+				-- I'm using this exclusively for LSPs
 				ensure_installed = {
 					-- Javascript and web stuff
 					"ts_ls",
+					"eslint",
 					"html",
-					"htmx",
 					"emmet_ls",
 					"tailwindcss",
 					-- Lua
@@ -89,130 +65,88 @@ return {
 					-- Go
 					"gopls",
 					"templ",
-					-- C
-					"clangd",
-					-- C#
-					-- "omnisharp_mono",
-					"omnisharp",
 					-- OCaml
 					"ocamllsp",
+					-- C
+					"clangd",
 					-- Markdown
 					"marksman",
 					-- Docker stuff
 					"dockerls",
 					"docker_compose_language_service",
 				},
-				handlers = {
-					lsp_zero.default_setup,
-					lua_ls = function() -- Might get rid of this
-						local lua_opts = lsp_zero.nvim_lua_ls()
-						lspconfig.lua_ls.setup(lua_opts)
-					end,
-					gopls = function()
-						lspconfig.gopls.setup({
-							settings = {
-								gopls = {
-									gofumpt = true,
-								},
-							},
-						})
-					end,
-					basedpyright = function()
-						lspconfig.basedpyright.setup({
-							settings = {
-								basedpyright = {
-									disableOrganizeImports = true,
-									analysis = {
-										typeCheckingMode = "off",
-										autoImportCompletions = true,
-									},
-								},
-							},
-						})
-					end,
-					-- Need to find some way to stop prettier from working with templ files
-					html = function()
-						lspconfig.html.setup({
-							-- filetypes = { "hmtl", "templ" },
-							filetypes = { "hmtl" },
-						})
-					end,
-					htmx = function()
-						lspconfig.htmx.setup({
-							filetypes = { "hmtl", "htmldjango", "templ" },
-						})
-					end,
-					tailwindcss = function()
-						lspconfig.tailwindcss.setup({
-							filetypes = { "hmtl", "htmldjango", "templ", "javascript", "typescript" },
-							init_options = { userLanguages = { templ = "html" } },
-						})
-					end,
-					emmet_ls = function()
-						lspconfig.emmet_ls.setup({
-							filetypes = { "css", "hmtl", "htmldjango", "templ" },
-						})
-					end,
-					omnisharp = function()
-						lspconfig.omnisharp.setup({
-							cmd = {
-								"dotnet",
-								"/home/fahmi/src/omnisharp_roslyn/omnisharp-linux-x64-net6.0/OmniSharp.dll",
-							},
-							on_attach = function(client, bufnr)
-								local bufopts = { noremap = true, silent = true, buffer = bufnr }
-
-								utils.map(
-									"n",
-									"gf",
-									"<cmd>lua require('omnisharp_extended').lsp_references()<CR>",
-									bufopts
-								)
-								utils.map(
-									"n",
-									"gi",
-									"<cmd>lua require('omnisharp_extended').lsp_implementation()<cr>",
-									bufopts
-								)
-								utils.map("n", "gd", "<cmd>lua require('omnisharp_extended').lsp_definition()<CR>")
-								utils.map("n", "gD", "<cmd>Lspsaga peek_definition<CR>")
-								utils.map(
-									"n",
-									"gt",
-									"<cmd>lua require('omnisharp_extended').lsp_type_definition()<cr>",
-									bufopts
-								)
-								utils.map("n", "gT", "<cmd>Lspsaga peek_type_definition<cr>", bufopts)
-								utils.map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", bufopts)
-								utils.map({ "n", "v" }, "<leader>vca", "<cmd>Lspsaga code_action<CR>", bufopts)
-								utils.map("n", "<leader>vrn", "<cmd>Lspsaga rename<CR>", bufopts)
-								utils.map("n", "ec", "<cmd>Lspsaga show_cursor_diagnostics<CR>", bufopts)
-								utils.map("n", "el", "<cmd>Lspsaga show_line_diagnostics<CR>", bufopts)
-								utils.map("n", "eb", "<cmd>Lspsaga show_buf_diagnostics<CR>", bufopts)
-								utils.map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", bufopts)
-								utils.map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", bufopts)
-								utils.map("n", "K", "<cmd>Lspsaga hover_doc<CR>", bufopts)
-								utils.map("n", "<leader>o", "<cmd>Lspsaga outline<CR>", bufopts)
-							end,
-							settings = {
-								RoslynExtensionsOptions = {
-									EnableAnalyzersSupport = true,
-								},
-							},
-						})
-					end,
-				},
 			})
 
-			lsp_zero.set_sign_icons({
-				error = "✘",
-				warn = "▲",
-				hint = "⚑",
-				info = "",
-			})
+			local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+			local handlers = {
+				function(server_name)
+					lspconfig[server_name].setup({
+						capabilities = capabilities,
+					})
+				end,
+				lua_ls = function()
+					lspconfig.lua_ls.setup({
+						capabilities = capabilities,
+						settings = {
+							Lua = {
+								diagnostics = { globals = { "vim" } },
+							},
+						},
+					})
+				end,
+				gopls = function()
+					lspconfig.gopls.setup({
+						capabilities = capabilities,
+						settings = {
+							gopls = {
+								gofumpt = true,
+							},
+						},
+					})
+				end,
+				-- Need to find some way to stop prettier from working with templ files
+				html = function()
+					lspconfig.html.setup({
+						-- filetypes = { "hmtl", "templ" },
+						filetypes = { "hmtl" },
+					})
+				end,
+				htmx = function()
+					lspconfig.htmx.setup({
+						capabilities = capabilities,
+						filetypes = { "hmtl", "htmldjango", "templ" },
+					})
+				end,
+				tailwindcss = function()
+					lspconfig.tailwindcss.setup({
+						capabilities = capabilities,
+						filetypes = { "hmtl", "htmldjango", "templ", "javascript", "typescript" },
+						init_options = { userLanguages = { templ = "html" } },
+					})
+				end,
+				emmet_ls = function()
+					lspconfig.emmet_ls.setup({
+						capabilities = capabilities,
+						filetypes = { "css", "hmtl", "htmldjango", "templ" },
+					})
+				end,
+				basedpyright = function()
+					lspconfig.basedpyright.setup({
+						capabilities = capabilities,
+						disableOrganizeImports = true,
+						analysis = {
+							autoImportCompletions = true,
+							typeCheckingMode = "off",
+						},
+					})
+				end,
+			}
+
+			mason_lspconfig.setup_handlers(handlers)
 
 			vim.diagnostic.config({
-				virtual_text = false,
+				-- virtual_text = false,
 				severity_sort = true,
 				float = {
 					-- style = "minimal",
@@ -223,7 +157,7 @@ return {
 				},
 			})
 
-			vim.cmd([[ autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
+			-- vim.cmd([[ autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
 		end,
 	},
 }
