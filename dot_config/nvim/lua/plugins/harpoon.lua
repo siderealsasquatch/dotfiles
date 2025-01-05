@@ -1,5 +1,3 @@
-local utils = require("utils")
-
 return {
 	"ThePrimeagen/harpoon",
 	branch = "harpoon2",
@@ -10,6 +8,8 @@ return {
 		harpoon:setup()
 
 		-- Keybindings
+		local utils = require("utils")
+
 		utils.map("n", "<leader>a", function()
 			harpoon:list():add()
 		end)

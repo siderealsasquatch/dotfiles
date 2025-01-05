@@ -1,5 +1,3 @@
-local utils = require("utils")
-
 return {
 	"lewis6991/gitsigns.nvim",
 	config = function()
@@ -7,6 +5,8 @@ return {
 		require("gitsigns").setup()
 
 		-- Keybindings
+		local utils = require("utils")
+
 		local gs = package.loaded.gitsigns
 
 		-- Navigation

@@ -1,14 +1,12 @@
-local utils = require("utils")
-
 return {
 	"leath-dub/snipe.nvim",
 	config = function()
 		-- Plugin setup
 		local snipe = require("snipe")
 		snipe.setup({
-			-- ui = {
-			-- 	position = "center",
-			-- },
+			ui = {
+				position = "center",
+			},
 			hints = {
 				dictionary = "aefghilmnoprtuvwxyz",
 			},
@@ -18,6 +16,8 @@ return {
 		})
 
 		-- Keybindings
-		utils.map("n", "np", snipe.open_buffer_menu)
+		local utils = require("utils")
+
+		utils.map("n", "<C-p>", snipe.open_buffer_menu)
 	end,
 }
