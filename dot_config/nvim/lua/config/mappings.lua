@@ -10,6 +10,12 @@ local utils = require("utils")
 utils.map("n", "sh", ":sp<CR>") -- horizontal
 utils.map("n", "sv", ":vsp<CR>") -- vertical
 
+-- Quickfix list
+utils.map("n", "<C-M-j>", "<cmd>cnext<CR>")
+utils.map("n", "<C-M-k>", "<cmd>cprev<CR>")
+utils.map("n", "<leader>co", "<cmd>copen<CR>")
+utils.map("n", "<leader>cc", "<cmd>cclose<CR>")
+
 -- Switch between windows
 utils.map("n", "<C-H>", "<C-W>h")
 utils.map("n", "<C-J>", "<C-W>j")
@@ -17,6 +23,8 @@ utils.map("n", "<C-K>", "<C-W>k")
 utils.map("n", "<C-L>", "<C-W>l")
 
 -- Buffers
+utils.map("n", "<leader>]", "<cmd>bnext<CR>")
+utils.map("n", "<leader>[", "<cmd>bprev<CR>")
 utils.map("n", "<tab>", ":b#<CR>")
 utils.map("n", "<C-C><C-D>", ":bd<CR>")
 
