@@ -18,6 +18,11 @@ return {
 		sources = {
 			default = { "lsp", "path", "snippets" },
 		},
+		completion = {
+			menu = {
+				draw = { treesitter = { "lsp" } },
+			},
+		},
 		snippets = {
 			expand = function(snippet)
 				require("luasnip").lsp_expand(snippet)

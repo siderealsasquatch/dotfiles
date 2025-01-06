@@ -36,12 +36,15 @@ autocmd("FileType", {
 })
 autocmd("FileType", {
 	pattern = { "markdown" },
-	-- command = [[setlocal expandtab ts=2 softtabstop=2 shiftwidth=2 tw=80]],
 	command = [[setlocal expandtab ts=2 softtabstop=2 shiftwidth=2 tw=90]],
 })
 autocmd("FileType", {
 	pattern = { "javascript" },
 	command = [[setlocal expandtab ts=2 softtabstop=2 shiftwidth=2 tw=80]],
+})
+autocmd("FileType", {
+	pattern = { "html", "css" },
+	command = [[setlocal expandtab ts=2 softtabstop=2 shiftwidth=2]],
 })
 autocmd("FileType", {
 	pattern = { "c" },

@@ -23,8 +23,8 @@ utils.map("n", "<leader>co", "<cmd>copen<CR>")
 utils.map("n", "<leader>cc", "<cmd>cclose<CR>")
 
 -- Buffers
-utils.map("n", "<leader>]", ":bnext<CR>")
-utils.map("n", "<leader>[", ":bprevious<CR>")
+utils.map("n", "]b", ":bnext<CR>")
+utils.map("n", "[b", ":bprevious<CR>")
 utils.map("n", "<tab>", ":b#<CR>")
 utils.map("n", "<C-C><C-D>", ":bd<CR>")
 
