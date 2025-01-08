@@ -26,7 +26,7 @@ utils.map("n", "<leader>cc", "<cmd>cclose<CR>")
 utils.map("n", "]b", ":bnext<CR>")
 utils.map("n", "[b", ":bprevious<CR>")
 utils.map("n", "<tab>", ":b#<CR>")
-utils.map("n", "<C-C><C-D>", ":bd<CR>")
+utils.map("n", "<C-C>", ":bd<CR>")
 
 -- Copying to system clipboard
 utils.map({ "v", "n" }, "<leader>y", '"+y')
@@ -36,4 +36,5 @@ utils.map("n", "<leader>yy", '"+yy')
 utils.map({ "v", "n" }, "<leader>p", '"+p')
 
 -- Open netrw
-utils.map("n", "<leader>nt", ":Ex<CR>")
+-- Remove for now since I'm using oil
+-- utils.map("n", "<leader>nt", ":Ex<CR>")
