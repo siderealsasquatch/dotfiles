@@ -162,6 +162,8 @@ return {
 		utils.map("n", "<leader>fh", builtin.help_tags)
 		utils.map("n", "<leader>fm", builtin.marks)
 		utils.map("n", "<leader>fj", builtin.jumplist)
+		utils.map("n", "<leader>fl", builtin.loclist)
+		utils.map("n", "<leader>fq", builtin.quickfix)
 		utils.map("n", "<leader>fu", "<cmd>Telescope undo<CR>")
 	end,
 }
