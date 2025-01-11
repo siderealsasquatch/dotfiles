@@ -23,8 +23,8 @@ utils.map("n", "<C-K>", "<C-W>k")
 utils.map("n", "<C-L>", "<C-W>l")
 
 -- Buffers
-utils.map("n", "<leader>]", "<cmd>bnext<CR>")
-utils.map("n", "<leader>[", "<cmd>bprev<CR>")
+utils.map("n", "]b", ":bnext<CR>")
+utils.map("n", "[b", ":bprevious<CR>")
 utils.map("n", "<tab>", ":b#<CR>")
 utils.map("n", "<C-C><C-D>", ":bd<CR>")
 
@@ -36,4 +36,5 @@ utils.map("n", "<leader>yy", '"+yy')
 utils.map({ "v", "n" }, "<leader>p", '"+p')
 
 -- Open netrw
-utils.map("n", "<leader>nt", ":Ex<CR>")
+-- Remove for now since I'm using oil
+-- utils.map("n", "<leader>nt", ":Ex<CR>")

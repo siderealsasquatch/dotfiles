@@ -153,14 +153,17 @@ return {
 		require("telescope").load_extension("undo")
 
 		-- Keybindings
-		utils.map("n", "<leader>ff", builtin.find_files, {})
-		utils.map("n", "<leader>fo", builtin.oldfiles, {})
-		utils.map("n", "<leader>fg", builtin.live_grep, {})
-		utils.map("n", "<leader>fs", builtin.grep_string, {})
-		utils.map("n", "<leader>fb", builtin.buffers, {})
-		utils.map("n", "<leader>fz", builtin.current_buffer_fuzzy_find, {})
-		utils.map("n", "<leader>fh", builtin.help_tags, {})
-		utils.map("n", "<leader>fm", builtin.marks, {})
+		utils.map("n", "<leader>ff", builtin.find_files)
+		utils.map("n", "<leader>fo", builtin.oldfiles)
+		utils.map("n", "<leader>fg", builtin.live_grep)
+		utils.map("n", "<leader>fs", builtin.grep_string)
+		utils.map("n", "<leader>fb", builtin.buffers)
+		utils.map("n", "<leader>fz", builtin.current_buffer_fuzzy_find)
+		utils.map("n", "<leader>fh", builtin.help_tags)
+		utils.map("n", "<leader>fm", builtin.marks)
+		utils.map("n", "<leader>fj", builtin.jumplist)
+		utils.map("n", "<leader>fl", builtin.loclist)
+		utils.map("n", "<leader>fq", builtin.quickfix)
 		utils.map("n", "<leader>fu", "<cmd>Telescope undo<CR>", {})
 	end,
 }
