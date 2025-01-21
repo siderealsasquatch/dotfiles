@@ -164,6 +164,11 @@ return {
 		utils.map("n", "<leader>fj", builtin.jumplist)
 		utils.map("n", "<leader>fl", builtin.loclist)
 		utils.map("n", "<leader>fq", builtin.quickfix)
+		utils.map("n", "<leader>flr", builtin.lsp_references)
+		utils.map("n", "<leader>flO", builtin.lsp_document_symbols)
+		utils.map("n", "<leader>fli", builtin.lsp_implementations)
+		utils.map("n", "<leader>fld", builtin.lsp_definitions)
+		utils.map("n", "<leader>flo", builtin.lsp_type_definitions)
 		utils.map("n", "<leader>fu", "<cmd>Telescope undo<CR>")
 	end,
 }

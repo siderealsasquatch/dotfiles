@@ -25,6 +25,13 @@ autocmd({ "BufNewFile", "BufRead" }, {
 	end,
 })
 
+autocmd({ "BufNewFile", "BufEnter" }, {
+	pattern = { ".env*" },
+	callback = function()
+		vim.opt_local.filetype = "config"
+	end,
+})
+
 -- File formatting based on file type
 autocmd("FileType", {
 	pattern = { "python", "r", "rmd" },
@@ -40,7 +47,7 @@ autocmd("FileType", {
 })
 autocmd("FileType", {
 	pattern = { "javascript" },
-	command = [[setlocal expandtab ts=2 softtabstop=2 shiftwidth=2 tw=80]],
+	command = [[setlocal expandtab ts=2 softtabstop=2 shiftwidth=2 tw=90]],
 })
 autocmd("FileType", {
 	pattern = { "html", "css" },
