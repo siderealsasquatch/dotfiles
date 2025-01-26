@@ -18,7 +18,7 @@ vim.filetype.add({
 })
 
 -- Set filtypes based on extension
-autocmd({ "BufNewFile", "BufRead" }, {
+autocmd({ "BufWinEnter", "BufRead" }, {
 	pattern = { "*.gohtml" },
 	callback = function()
 		vim.opt_local.filetype = "html"

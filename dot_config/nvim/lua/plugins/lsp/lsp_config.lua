@@ -37,7 +37,6 @@ return {
 					"eslint_d",
 					"golangci-lint",
 					"ruff",
-					"mypy",
 					-- Formatters
 					"stylua",
 					"djlint",
