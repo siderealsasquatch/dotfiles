@@ -21,6 +21,7 @@ utils.map("n", "<C-M-j>", "<cmd>cnext<CR>")
 utils.map("n", "<C-M-k>", "<cmd>cprev<CR>")
 utils.map("n", "<leader>co", "<cmd>copen<CR>")
 utils.map("n", "<leader>cc", "<cmd>cclose<CR>")
+utils.map("n", "<leader>ce", "<cmd>cfdo edit | cclose<CR>")
 
 -- Buffers
 utils.map("n", "]b", ":bnext<CR>")
