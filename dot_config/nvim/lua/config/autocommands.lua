@@ -24,6 +24,12 @@ autocmd({ "BufNewFile", "BufRead" }, {
 		vim.opt_local.filetype = "html"
 	end,
 })
+autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = { ".env*" },
+	callback = function()
+		vim.opt_local.filetype = "config"
+	end,
+})
 
 -- File formatting based on file type
 autocmd("FileType", {

@@ -15,6 +15,7 @@ utils.map("n", "<C-M-j>", "<cmd>cnext<CR>")
 utils.map("n", "<C-M-k>", "<cmd>cprev<CR>")
 utils.map("n", "<leader>co", "<cmd>copen<CR>")
 utils.map("n", "<leader>cc", "<cmd>cclose<CR>")
+utils.map("n", "<leader>ce", "<cmd>cfdo edit | cclose<CR>")
 
 -- Switch between windows
 utils.map("n", "<C-H>", "<C-W>h")
@@ -26,7 +27,7 @@ utils.map("n", "<C-L>", "<C-W>l")
 utils.map("n", "]b", ":bnext<CR>")
 utils.map("n", "[b", ":bprevious<CR>")
 utils.map("n", "<tab>", ":b#<CR>")
-utils.map("n", "<C-C><C-D>", ":bd<CR>")
+utils.map("n", "<C-C>", ":bd<CR>")
 
 -- Copying to system clipboard
 utils.map({ "v", "n" }, "<leader>y", '"+y')

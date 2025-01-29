@@ -20,7 +20,10 @@ return {
 			},
 			signature = { enabled = true },
 			sources = {
-				default = { "lsp", "path", "snippets" },
+				default = { "lsp", "path", "snippets", "dadbod" },
+				providers = {
+					dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+				},
 			},
 			completion = {
 				menu = {
@@ -28,6 +31,13 @@ return {
 						treesitter = { "lsp" },
 						columns = { { "kind_icon" }, { "label", "label_description", gap = 1 } },
 						components = {
+							kind_icon = {
+								ellipsis = false,
+								text = function(ctx)
+									local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
+									return kind_icon
+								end,
+							},
 							label = {
 								text = colorful_menu.blink_components_text,
 								highlight = colorful_menu.blink_components_highlight,

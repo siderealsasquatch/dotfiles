@@ -14,6 +14,7 @@ return {
 			},
 			-- Set to true to watch the filesystem for changes and reload oil
 			watch_for_changes = true,
+			skip_confirm_for_simple_edits = true,
 			view_options = {
 				-- Show files and directories that start with "."
 				show_hidden = true,
