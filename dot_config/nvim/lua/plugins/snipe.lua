@@ -6,9 +6,10 @@ return {
 		snipe.setup({
 			ui = {
 				position = "center",
+				text_align = "file-first",
 			},
 			hints = {
-				dictionary = "aefghilmnoprtuvwxyz",
+				dictionary = "asdfghjklwertyuiop",
 			},
 			navigate = {
 				close_buffer = "q",

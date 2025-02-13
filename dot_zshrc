@@ -67,6 +67,12 @@ export FZF_ALT_C_COMMAND='fd -t d --no-ignore -HL -E "{.git,__py*}" -E node_modu
 # Set default options for the fzf app
 export FZF_DEFAULT_OPTS="-i -m --reverse --border"
 
+# eza
+# ---
+
+# Make it so that eza behaves as though the `--icons` option has been set
+export EZA_ICONS_AUTO=1
+
 # Final path entry
 # ----------------
 
@@ -124,7 +130,7 @@ bindkey '^v' fzf-cd-widget
 # ls
 #===
 
-alias ls='eza --icons'
+alias ls='eza'
 alias l.='ls -d .*(/,.,@)' # Read more about zsh glob qualifiers (i.e., everything in parentheses)
 alias ll='ls -l'
 alias lt='ls --tree'
