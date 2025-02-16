@@ -8,6 +8,7 @@ return {
 		-- indent = snacks_config.indent_cfg,
 		picker = snacks_config.picker_cfg,
 		statuscolumn = { enabled = true },
+		words = { enabled = true },
 	},
 	keys = {
 		{
@@ -80,6 +81,22 @@ return {
 				Snacks.picker.lsp_symbols()
 			end,
 			desc = "LSP Symbols",
+		},
+		{
+			"]]",
+			function()
+				Snacks.words.jump(vim.v.count1)
+			end,
+			desc = "Next Reference",
+			mode = { "n", "t" },
+		},
+		{
+			"[[",
+			function()
+				Snacks.words.jump(-vim.v.count1)
+			end,
+			desc = "Prev Reference",
+			mode = { "n", "t" },
 		},
 	},
 }
