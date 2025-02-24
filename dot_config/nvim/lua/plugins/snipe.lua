@@ -6,13 +6,14 @@ return {
 		snipe.setup({
 			ui = {
 				position = "center",
+				preselect_current = true,
 				text_align = "file-first",
 			},
 			hints = {
-				dictionary = "asdfghjklwertyuiop",
+				dictionary = "asdfglqwertyuiopbnm",
 			},
 			navigate = {
-				close_buffer = "q",
+				close_buffer = "x",
 			},
 		})
 

@@ -20,11 +20,11 @@ return {
 
 				add = "as", -- Add surrounding in Normal and Visual modes
 				delete = "ds", -- Delete surrounding
-				find = "fs", -- Find surrounding (to the right)
-				find_left = "Fs", -- Find surrounding (to the left)
-				highlight = "sh", -- Highlight surrounding
+				find = "rf", -- Find surrounding (to the right)
+				find_left = "rF", -- Find surrounding (to the left)
+				highlight = "rh", -- Highlight surrounding
 				replace = "rs", -- Replace surrounding
-				update_n_lines = "sn", -- Update `n_lines`
+				update_n_lines = "rn", -- Update `n_lines`
 
 				suffix_last = "l", -- Suffix to search with "prev" method
 				suffix_next = "n", -- Suffix to search with "next" method

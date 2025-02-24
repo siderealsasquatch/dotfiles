@@ -50,7 +50,7 @@ return {
 		{
 			"<leader>fm",
 			function()
-				Snacks.picker.marks()
+				Snacks.picker.marks({ global = false })
 			end,
 			desc = "Marks",
 		},
