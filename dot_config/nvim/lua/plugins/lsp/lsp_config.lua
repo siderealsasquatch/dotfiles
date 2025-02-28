@@ -107,6 +107,7 @@ return {
 				-- Need to find some way to stop prettier from working with templ files
 				html = function()
 					lspconfig.html.setup({
+						capabilities = capabilities,
 						-- filetypes = { "hmtl", "templ" },
 						filetypes = { "hmtl" },
 					})

@@ -1,3 +1,6 @@
+# mise config
+eval "$(/home/fahmi/.local/bin/mise activate zsh)"
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -436,12 +439,35 @@ j() {
 }
 
 # Use walk
-function lk {
+lk() {
   cd "$(walk --icons "$@")"
 }
 
 # Create shorter alias for yazi
 alias yz='yazi'
+
+# Sesh
+# Maybe put this in a separate file for scripts to be called from functions defined
+# in zshrc
+t() {
+    sesh connect $(
+      # sesh list --icons | fzf -p 80%,70% \
+      sesh list --icons | fzf \
+        --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
+        --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find ? toggle preview' \
+        --bind 'tab:down,btab:up' \
+        --bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list --icons)' \
+        --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t --icons)' \
+        --bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list -c --icons)' \
+        --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z --icons)' \
+        --bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -I -d 4 -t d . ~ /mnt/d/ /mnt/f/)' \
+        --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list --icons)' \
+        --bind '?:toggle-preview' \
+        --preview 'sesh preview {}' \
+        --preview-window hidden
+        # --preview-window 'right:55%' \
+    )
+}
 
 #================================
 # Stuff for command line programs
@@ -459,37 +485,6 @@ alias yz='yazi'
 #$_Z_NO_RESOLVE_SYMLINKS=true
 $_Z_NO_RESOLVE_SYMLINKS=false
 
-# nnn
-# ---
-
-# Work on this later
-
-# Set options for nnn
-export NNN_OPTS="adEr"
-
-# Set FIFO
-#export NNN_FIFO="/tmp/nnn.fifo"
-
-# Enable plugins
-export NNN_PLUG="v:imgview;f:fzopen;p:preview-tui"
-
-# Have preview-tui use pistol
-# export USE_PISTOL=1
-
-# Have the preview-tui splits be vertical
-export SPLIT=v
-
-# Enable kitty previews
-#export TMPDIR="/tmp"
-export KITTY_LISTEN_ON=1
-
-# Nix
-# ---
-
-if [ -e /home/fahmi/.nix-profile/etc/profile.d/nix.sh ];then
-    . /home/fahmi/.nix-profile/etc/profile.d/nix.sh;
-fi # added by Nix installer
-
 ###############
 # Final inits #
 ###############
@@ -499,10 +494,6 @@ eval "$(starship init zsh)"
 
 # Init zoxide
 eval "$(zoxide init zsh)"
-
-# Init any-nix-shell
-#any-nix-shell zsh --info-right | source /dev/stdin
-any-nix-shell zsh | source /dev/stdin
 
 # uv stuff
 . "$HOME/.cargo/env"
@@ -522,3 +513,10 @@ else
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
+
+# bun completions
+# [ -s "/home/fahmi/.bun/_bun" ] && source "/home/fahmi/.bun/_bun"
+
+# bun
+# export BUN_INSTALL="$HOME/.bun"
+# export PATH="$BUN_INSTALL/bin:$PATH"

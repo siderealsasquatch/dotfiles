@@ -32,6 +32,13 @@ autocmd({ "BufNewFile", "BufEnter" }, {
 	end,
 })
 
+autocmd({ "BufNewFile", "BufEnter" }, {
+	pattern = { "*.bru" },
+	callback = function()
+		vim.opt_local.filetype = "bruno"
+	end,
+})
+
 -- File formatting based on file type
 autocmd("FileType", {
 	pattern = { "python", "r", "rmd" },
