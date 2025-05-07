@@ -24,8 +24,8 @@ utils.map("n", "<leader>cc", "<cmd>cclose<CR>")
 utils.map("n", "<leader>ce", "<cmd>cfdo edit | cclose<CR>")
 
 -- Buffers
-utils.map("n", "]b", ":bnext<CR>")
-utils.map("n", "[b", ":bprevious<CR>")
+-- utils.map("n", "]b", ":bnext<CR>")
+-- utils.map("n", "[b", ":bprevious<CR>")
 utils.map("n", "<tab>", ":b#<CR>")
 utils.map("n", "<C-C>", ":bd<CR>")
 

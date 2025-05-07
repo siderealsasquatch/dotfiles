@@ -13,7 +13,7 @@ return {
 				dictionary = "asdfglqwertyuiopbnm",
 			},
 			navigate = {
-				close_buffer = "x",
+				close_buffer = "X",
 			},
 		})
 

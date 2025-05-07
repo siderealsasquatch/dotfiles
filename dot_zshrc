@@ -32,7 +32,8 @@ export PATH="/usr/lib/ccache/bin:$PATH"
 # ---
 
 # Set DISPLAY var for connecting to external X server
-export DISPLAY=localhost:0.0
+# export DISPLAY=localhost:0.0
+export DISPLAY=$(sed -n 's/nameserver //p' /etc/resolv.conf):0
 
 # Get the IP address from /etc/resolv.conf
 export WSL_LOCALHOST=$(awk '/nameserver/ {print $2}' /etc/resolv.conf)

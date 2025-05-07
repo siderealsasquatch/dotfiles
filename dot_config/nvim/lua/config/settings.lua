@@ -79,6 +79,9 @@ global.netrw_banner = 0
 
 -- LSP diagnostics
 vim.diagnostic.config({
+	virtual_lines = {
+		current_line = true,
+	},
 	signs = {
 		text = {
 			-- [vim.diagnostic.severity.ERROR] = "✘",

@@ -10,22 +10,27 @@ return {
 		config = function()
 			-- This is where all the LSP shenanigans will live
 			local lspconfig = require("lspconfig")
+			local utils = require("utils")
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(event)
 					local opts = { buffer = event.buf }
 
-					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-					vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-					vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-					vim.keymap.set("n", "gri", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-					vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
-					vim.keymap.set("n", "grr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-					vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
-					vim.keymap.set("n", "grn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-					vim.keymap.set("n", "gO", "<cmd>lua vim.lsp.buf.document_symbol()<cr>", opts)
-					vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
-					vim.keymap.set({ "n", "v" }, "gra", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+					utils.map("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+					utils.map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+					utils.map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
+					utils.map("n", "gri", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+					utils.map("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
+					utils.map("n", "grr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+					utils.map("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
+					utils.map("n", "grn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+					utils.map("n", "gO", "<cmd>lua vim.lsp.buf.document_symbol()<cr>", opts)
+					utils.map({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
+					utils.map({ "n", "v" }, "gra", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+
+					-- utils.map("n", "<leader>dl", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
+					-- utils.map("n", "[d", "<cmd>lua vim.diagnostic.jump({count = -1})<cr>", opts)
+					-- utils.map("n", "]d", "<cmd>lua vim.diagnostic.jump({count = 1})<cr>", opts)
 				end,
 			})
 
@@ -75,75 +80,6 @@ return {
 					"docker_compose_language_service",
 				},
 			})
-
-			local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-			local handlers = {
-				function(server_name)
-					lspconfig[server_name].setup({
-						capabilities = capabilities,
-					})
-				end,
-				lua_ls = function()
-					lspconfig.lua_ls.setup({
-						capabilities = capabilities,
-						settings = {
-							Lua = {
-								diagnostics = { globals = { "vim" } },
-							},
-						},
-					})
-				end,
-				gopls = function()
-					lspconfig.gopls.setup({
-						capabilities = capabilities,
-						settings = {
-							gopls = {
-								gofumpt = true,
-							},
-						},
-					})
-				end,
-				-- Need to find some way to stop prettier from working with templ files
-				html = function()
-					lspconfig.html.setup({
-						capabilities = capabilities,
-						-- filetypes = { "hmtl", "templ" },
-						filetypes = { "hmtl" },
-					})
-				end,
-				htmx = function()
-					lspconfig.htmx.setup({
-						capabilities = capabilities,
-						filetypes = { "hmtl", "htmldjango", "templ" },
-					})
-				end,
-				tailwindcss = function()
-					lspconfig.tailwindcss.setup({
-						capabilities = capabilities,
-						filetypes = { "hmtl", "htmldjango", "templ", "javascript", "typescript" },
-						init_options = { userLanguages = { templ = "html" } },
-					})
-				end,
-				emmet_ls = function()
-					lspconfig.emmet_ls.setup({
-						capabilities = capabilities,
-						filetypes = { "css", "hmtl", "htmldjango", "templ" },
-					})
-				end,
-				basedpyright = function()
-					lspconfig.basedpyright.setup({
-						capabilities = capabilities,
-						disableOrganizeImports = true,
-						analysis = {
-							autoImportCompletions = true,
-							typeCheckingMode = "off",
-						},
-					})
-				end,
-			}
-
-			mason_lspconfig.setup_handlers(handlers)
 
 			vim.diagnostic.config({
 				-- virtual_text = false,

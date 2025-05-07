@@ -18,7 +18,10 @@ return {
 				use_nvim_cmp_as_default = true,
 				nerd_font_variant = "mono",
 			},
-			signature = { enabled = true },
+			signature = {
+				enabled = true,
+				trigger = { enabled = true },
+			},
 			sources = {
 				default = { "lsp", "path", "snippets", "dadbod" },
 				providers = {
@@ -26,6 +29,17 @@ return {
 				},
 			},
 			completion = {
+				accept = {
+					-- For some reason enabling this prevents function signatures from automatically displaying.
+					-- Need to see if there is a way around this other than manually toggling the signature which
+					-- is kinda annoying to have to do for every function.
+					auto_brackets = { enabled = false },
+				},
+				documentation = {
+					auto_show = true,
+					auto_show_delay_ms = 500,
+					update_delay_ms = 50,
+				},
 				menu = {
 					draw = {
 						treesitter = { "lsp" },

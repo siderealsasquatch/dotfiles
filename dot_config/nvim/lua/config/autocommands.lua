@@ -25,12 +25,12 @@ autocmd({ "BufWinEnter", "BufRead" }, {
 	end,
 })
 
-autocmd({ "BufNewFile", "BufEnter" }, {
-	pattern = { ".env*" },
-	callback = function()
-		vim.opt_local.filetype = "config"
-	end,
-})
+-- autocmd({ "BufNewFile", "BufEnter" }, {
+-- 	pattern = { ".env*" },
+-- 	callback = function()
+-- 		vim.opt_local.filetype = "config"
+-- 	end,
+-- })
 
 autocmd({ "BufNewFile", "BufEnter" }, {
 	pattern = { "*.bru" },
@@ -54,7 +54,11 @@ autocmd("FileType", {
 })
 autocmd("FileType", {
 	pattern = { "javascript" },
-	command = [[setlocal expandtab ts=2 softtabstop=2 shiftwidth=2 tw=90]],
+	command = [[setlocal expandtab ts=2 softtabstop=2 shiftwidth=2]],
+})
+autocmd("FileType", {
+	pattern = { "json" },
+	command = [[setlocal expandtab ts=2 softtabstop=2 shiftwidth=2]],
 })
 autocmd("FileType", {
 	pattern = { "html", "css" },

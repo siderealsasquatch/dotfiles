@@ -1,6 +1,6 @@
 return {
 	"sindrets/diffview.nvim",
-	lazy = true,
+	-- lazy = true,
 	config = function()
 		-- Configure diffview
 		require("diffview").setup()
@@ -8,8 +8,8 @@ return {
 		-- Keybindings
 		local utils = require("utils")
 
-		utils.map("n", "<leader>do", ":DiffviewOpen<CR>")
-		utils.map("n", "<leader>dh", ":DiffviewFileHistory<CR>")
-		utils.map("n", "<leader>df", ":DiffviewFileHistory %<CR>")
+		utils.map("n", "<leader>do", "<cmd>DiffviewOpen<cr>")
+		utils.map("n", "<leader>dh", "<cmd>DiffviewFileHistory<cr>")
+		utils.map("n", "<leader>df", "<cmd>DiffviewFileHistory %<cr>")
 	end,
 }

@@ -19,3 +19,9 @@ zoxide = "latest"
 node = "22"
 python = "3.10"
 bun = "latest"
+yt-dlp = "latest"
+neovim = "latest"
+github-cli = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = ["python"]
