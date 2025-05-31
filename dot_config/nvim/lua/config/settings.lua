@@ -76,28 +76,3 @@ global.clipboard = {
 
 -- Netrw settings
 global.netrw_banner = 0
-
--- LSP diagnostics
-vim.diagnostic.config({
-	virtual_lines = {
-		current_line = true,
-	},
-	signs = {
-		text = {
-			-- [vim.diagnostic.severity.ERROR] = "✘",
-			-- [vim.diagnostic.severity.WARN] = "▲",
-			-- [vim.diagnostic.severity.HINT] = "⚑",
-			-- [vim.diagnostic.severity.INFO] = "»",
-			[vim.diagnostic.severity.ERROR] = "",
-			[vim.diagnostic.severity.WARN] = "",
-			[vim.diagnostic.severity.HINT] = "",
-			[vim.diagnostic.severity.INFO] = "",
-		},
-		numhl = {
-			[vim.diagnostic.severity.ERROR] = "ErrorMsg",
-			[vim.diagnostic.severity.WARN] = "WarningMsg",
-			[vim.diagnostic.severity.HINT] = "DiagnosticHint",
-			[vim.diagnostic.severity.INFO] = "DiagnosticInfo",
-		},
-	},
-})

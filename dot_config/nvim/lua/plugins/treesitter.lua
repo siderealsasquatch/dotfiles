@@ -29,6 +29,8 @@ return {
 				"bash",
 				"go",
 				"gomod",
+				"gosum",
+				"gotmpl",
 				"templ",
 				"python",
 				"r",

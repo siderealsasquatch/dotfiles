@@ -4,5 +4,5 @@ return {
 		"package.json",
 		".git",
 	},
-	filetypes = { "html" },
+	filetypes = { "html", "javascriptreact", "typescriptreact", "templ" },
 }

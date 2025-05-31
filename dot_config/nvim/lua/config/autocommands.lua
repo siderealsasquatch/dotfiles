@@ -17,7 +17,7 @@ vim.filetype.add({
 	},
 })
 
--- Set filtypes based on extension
+-- Set filetypes based on extension
 autocmd({ "BufWinEnter", "BufRead" }, {
 	pattern = { "*.gohtml" },
 	callback = function()
@@ -45,23 +45,11 @@ autocmd("FileType", {
 	command = [[setlocal expandtab tw=88]],
 })
 autocmd("FileType", {
-	pattern = { "python" },
-	command = [[setlocal expandtab tw=88]], -- Set to 88 specifically for black
-})
-autocmd("FileType", {
 	pattern = { "markdown" },
 	command = [[setlocal expandtab ts=2 softtabstop=2 shiftwidth=2 tw=90]],
 })
 autocmd("FileType", {
-	pattern = { "javascript" },
-	command = [[setlocal expandtab ts=2 softtabstop=2 shiftwidth=2]],
-})
-autocmd("FileType", {
-	pattern = { "json" },
-	command = [[setlocal expandtab ts=2 softtabstop=2 shiftwidth=2]],
-})
-autocmd("FileType", {
-	pattern = { "html", "css" },
+	pattern = { "json", "html", "css", "javascript", "typescript", "javascriptreact", "typescriptreact" },
 	command = [[setlocal expandtab ts=2 softtabstop=2 shiftwidth=2]],
 })
 autocmd("FileType", {

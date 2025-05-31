@@ -3,5 +3,5 @@ return {
 	root_markers = {
 		".git",
 	},
-	filetypes = { "html", "htmldjango", "templ" },
+	filetypes = { "html", "htmldjango", "templ", "javascriptreact", "typescriptreact" },
 }
