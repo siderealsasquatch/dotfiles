@@ -5,7 +5,6 @@ return {
 		modes = {
 			char = {
 				jump_labels = true,
-				-- multi_line = false,
 			},
 		},
 	},
@@ -15,6 +14,14 @@ return {
 			mode = { "n", "x", "o" },
 			function()
 				require("flash").jump()
+			end,
+			desc = "Flash",
+		},
+		{
+			"sw",
+			mode = { "n", "x", "o" },
+			function()
+				require("flash").jump({ pattern = vim.fn.expand("<cword>") })
 			end,
 			desc = "Flash",
 		},

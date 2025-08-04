@@ -29,6 +29,8 @@ return {
 				"lua",
 				"bash",
 				"go",
+				"gomod",
+				"gosum",
 				"templ",
 				"python",
 				"r",
@@ -48,7 +50,7 @@ return {
 				enable = true,
 				keymaps = {
 					init_selection = "<leader>s",
-					node_incremental = "<leader>s",
+					node_incremental = "<leader>sn",
 					scope_incremental = "<leader>ss",
 					node_decremental = "<leader>sd",
 				},

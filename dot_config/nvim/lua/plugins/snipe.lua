@@ -7,9 +7,10 @@ return {
 		snipe.setup({
 			ui = {
 				position = "center",
+				text_align = "file-first",
 			},
 			hints = {
-				dictionary = "abcefghilmnoprstuvwxyz",
+				dictionary = "asdfghjklwertyuiopzxcvbnm",
 			},
 			navigate = {
 				cancel_snipe = "q",

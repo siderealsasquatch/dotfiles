@@ -45,11 +45,7 @@ autocmd("FileType", {
 	command = [[setlocal expandtab ts=2 softtabstop=2 shiftwidth=2 tw=90]],
 })
 autocmd("FileType", {
-	pattern = { "javascript", "css" },
-	command = [[setlocal expandtab ts=2 softtabstop=2 shiftwidth=2 tw=90]],
-})
-autocmd("FileType", {
-	pattern = { "html" },
+	pattern = { "javascript", "javascriptreact", "typescript", "typescriptreact", "css", "html" },
 	command = [[setlocal expandtab ts=2 softtabstop=2 shiftwidth=2]],
 })
 autocmd("FileType", {

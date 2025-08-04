@@ -20,13 +20,13 @@ return {
 
 				-- Not sure what to do about the keybindings for find yet. Will leave
 				-- them as is for now.
-				add = "as", -- Add surrounding in Normal and Visual modes
-				delete = "ds", -- Delete surrounding
-				find = "sf", -- Find surrounding (to the right)
-				find_left = "sF", -- Find surrounding (to the left)
-				highlight = "sh", -- Highlight surrounding
+				add = "ar", -- Add surrounding in Normal and Visual modes
+				delete = "dr", -- Delete surrounding
+				find = "fr", -- Find surrounding (to the right)
+				find_left = "Fr", -- Find surrounding (to the left)
+				highlight = "rh", -- Highlight surrounding
 				replace = "rs", -- Replace surrounding
-				update_n_lines = "sn", -- Update `n_lines`
+				update_n_lines = "nr", -- Update `n_lines`
 
 				suffix_last = "l", -- Suffix to search with "prev" method
 				suffix_next = "n", -- Suffix to search with "next" method

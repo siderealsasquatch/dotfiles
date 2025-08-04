@@ -25,7 +25,6 @@ set $mod Mod1
 floating_modifier $mod
 
 # start a terminal
-# bindsym $mod+Return exec kitty
 bindsym $mod+Return exec wezterm
 
 # kill focused window

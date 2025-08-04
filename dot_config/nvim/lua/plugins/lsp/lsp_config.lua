@@ -9,8 +9,6 @@ return {
 		},
 		config = function()
 			-- This is where all the LSP shenanigans will live
-			local lspconfig = require("lspconfig")
-
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(event)
 					local opts = { buffer = event.buf }
@@ -74,76 +72,47 @@ return {
 				},
 			})
 
-			local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-			local handlers = {
-				function(server_name)
-					lspconfig[server_name].setup({
-						capabilities = capabilities,
-					})
-				end,
-				lua_ls = function()
-					lspconfig.lua_ls.setup({
-						capabilities = capabilities,
-						settings = {
-							Lua = {
-								diagnostics = { globals = { "vim" } },
-							},
+			vim.lsp.config("*", {
+				capabilities = {
+					workspace = {
+						didChangeWatchedFiles = {
+							dynamicRegistration = true,
 						},
-					})
-				end,
-				gopls = function()
-					lspconfig.gopls.setup({
-						capabilities = capabilities,
-						settings = {
-							gopls = {
-								gofumpt = true,
-							},
-						},
-					})
-				end,
-				htmx = function()
-					lspconfig.htmx.setup({
-						capabilities = capabilities,
-						filetypes = { "hmtl", "htmldjango", "templ" },
-					})
-				end,
-				tailwindcss = function()
-					lspconfig.tailwindcss.setup({
-						capabilities = capabilities,
-						filetypes = { "hmtl", "htmldjango", "templ", "javascript", "typescript" },
-						init_options = { userLanguages = { templ = "html" } },
-					})
-				end,
-				emmet_ls = function()
-					lspconfig.emmet_ls.setup({
-						capabilities = capabilities,
-						filetypes = { "css", "hmtl", "htmldjango", "templ" },
-					})
-				end,
-				basedpyright = function()
-					lspconfig.basedpyright.setup({
-						capabilities = capabilities,
-						disableOrganizeImports = true,
-						analysis = {
-							autoImportCompletions = true,
-							typeCheckingMode = "off",
-						},
-					})
-				end,
-			}
-
-			mason_lspconfig.setup_handlers(handlers)
+					},
+				},
+			})
 
 			vim.diagnostic.config({
-				-- virtual_text = false,
 				severity_sort = true,
+				virtual_lines = {
+					current_line = true,
+				},
 				float = {
 					-- style = "minimal",
 					-- border = "rounded",
 					source = "always",
 					header = "",
 					prefix = "",
+				},
+				signs = {
+					-- text = {
+					-- 	[vim.diagnostic.severity.ERROR] = "✘",
+					-- 	[vim.diagnostic.severity.WARN] = "▲",
+					-- 	[vim.diagnostic.severity.HINT] = "⚑",
+					-- 	[vim.diagnostic.severity.INFO] = "»",
+					-- },
+					text = {
+						[vim.diagnostic.severity.ERROR] = "",
+						[vim.diagnostic.severity.WARN] = "",
+						[vim.diagnostic.severity.HINT] = "",
+						[vim.diagnostic.severity.INFO] = "",
+					},
+					numhl = {
+						[vim.diagnostic.severity.ERROR] = "ErrorMsg",
+						[vim.diagnostic.severity.WARN] = "WarningMsg",
+						[vim.diagnostic.severity.HINT] = "DiagnosticHint",
+						[vim.diagnostic.severity.INFO] = "DiagnosticInfo",
+					},
 				},
 			})
 

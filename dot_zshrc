@@ -4,31 +4,14 @@ export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH="/home/fahmi/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="powerlevel10k/powerlevel10k"
-#ZSH_THEME="spaceship"
+# Activate mise
+eval "$(mise activate zsh)"
 
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Examp le format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
+# Load ZSH plugins
 plugins=(git vi-mode autoupdate tmux zsh-autosuggestions zsh-syntax-highlighting fzf
 	fzf-tab direnv nix-shell nix-zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 #########################
 # Environment Variables #
@@ -87,6 +70,12 @@ export FZF_ALT_C_COMMAND='fd -t d --no-ignore -HL -E "{.git,__py*}" -E node_modu
 # Set default options for the fzf app which apply to all modes
 export FZF_DEFAULT_OPTS="-i -m --reverse --border"
 
+# eza
+# ---
+
+# Make it so that icons are always displayed
+export EZA_ICONS_AUTO=1
+
 # Final path entry
 # ----------------
 
@@ -103,13 +92,6 @@ export PATH=~/bin:$PATH
 
 # Enable extended globbing
 setopt extended_glob
-
-#=======
-# Prompt
-#=======
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 #============
 # Keybindings
@@ -140,12 +122,8 @@ bindkey '^v' fzf-cd-widget
 # ls
 #===
 
-#alias ls='lsd'
-alias ls='exa --icons'
 # alias ls='eza --icons'
-#alias ll='ls -alF'
-#alias la='ls -A'
-#alias l='ls -CF'
+alias ls='eza'
 alias l.='ls -d .*(/,.,@)' # Read more about zsh glob qualifiers (i.e., everything in parentheses)
 alias ll='ls -l'
 
@@ -189,29 +167,7 @@ alias fd='fd --color always'
 #========
 
 # Ensure that lazygit is run with TERM=xterm-kitty
-alias lazygit='env TERM=xterm-kitty lazygit'
-
-#=======
-# Zellij
-#=======
-
-# Start new session
-alias zs='zellij -s'
-
-# Attach to existing session
-alias za='zellij a'
-
-# Start list existing sessions
-alias zl='zellij ls'
-
-# Kill session
-alias zk='zellij k'
-
-# Kill all sessions
-alias zka='zellij ka'
-
-# Delete session
-alias zd='zellij delete-session'
+# alias lazygit='env TERM=xterm-kitty lazygit'
 
 #=====
 # Task
@@ -430,13 +386,39 @@ j() {
         -E '{.git,__py*}' \
         -E node_modules \
         -E vendor \
-        . ~ /mnt/windows-shared/ /mnt/windows-wfh-software/syncthing/ \
+        . ~ /mnt/windows-shared/ /mnt/windows-shared/syncthing/ \
         | fzf)
 }
 
 # Use walk
 lk() {
   cd "$(walk --icons "$@")"
+}
+
+# Create shorter alias for yazi
+alias yz='yazi'
+
+# Sesh
+# Maybe put this in a separate file for scripts to be called from functions defined
+# in zshrc
+t() {
+    sesh connect $(
+      # sesh list --icons | fzf -p 80%,70% \
+      sesh list --icons | fzf \
+        --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
+        --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find ? toggle preview' \
+        --bind 'tab:down,btab:up' \
+        --bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list --icons)' \
+        --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t --icons)' \
+        --bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list -c --icons)' \
+        --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z --icons)' \
+        --bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -I -d 4 -t d . ~ /mnt/windows-shared/ /mnt/windows-shared/syncthing/)' \
+        --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list --icons)' \
+        --bind '?:toggle-preview' \
+        --preview 'sesh preview {}' \
+        --preview-window hidden
+        # --preview-window 'right:55%' \
+    )
 }
 
 #================================
@@ -449,30 +431,6 @@ lk() {
 # Prevent z from resolving symlinks
 #$_Z_NO_RESOLVE_SYMLINKS=true
 $_Z_NO_RESOLVE_SYMLINKS=false
-
-# nnn
-# ---
-
-# Work on this later
-
-# Set options for nnn
-export NNN_OPTS="adEr"
-
-# Set FIFO
-#export NNN_FIFO="/tmp/nnn.fifo"
-
-# Enable plugins
-export NNN_PLUG="v:imgview;f:fzopen;p:preview-tui"
-
-# Have preview-tui use pistol
-# export USE_PISTOL=1
-
-# Have the preview-tui splits be vertical
-export SPLIT=v
-
-# Enable kitty previews
-#export TMPDIR="/tmp"
-export KITTY_LISTEN_ON=1
 
 #================
 # Aesthetic stuff
@@ -507,7 +465,8 @@ eval "$(direnv hook zsh)"
 [[ ! -r '/home/fahmi/.opam/opam-init/init.zsh' ]] || source '/home/fahmi/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
 
 # gcloud-cli
-. /etc/profile.d/google-cloud-cli.sh
+# Keep this in case I need it in the future.
+# . /etc/profile.d/google-cloud-cli.sh
 
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'micromamba shell init' !!

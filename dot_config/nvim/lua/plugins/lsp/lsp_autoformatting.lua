@@ -41,7 +41,9 @@ return {
 			conform.setup({
 				formatters_by_ft = {
 					javascript = { "prettierd" },
+					javascriptreact = { "prettierd" },
 					typescript = { "prettierd" },
+					typescriptreact = { "prettierd" },
 					css = { "prettierd" },
 					html = { "prettierd" },
 					htmldjango = { "djlint" },

@@ -13,7 +13,7 @@ return {
 		utils.map("n", "<leader>a", function()
 			harpoon:list():add()
 		end)
-		utils.map("n", "<leader>h", function()
+		utils.map("n", "<leader>hp", function()
 			harpoon.ui:toggle_quick_menu(harpoon:list())
 		end)
 
