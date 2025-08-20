@@ -15,6 +15,8 @@ return {
 		},
 		"xzbdmw/colorful-menu.nvim",
 		"brenoprata10/nvim-highlight-colors",
+		"moyiz/blink-emoji.nvim",
+		"MahanRahmati/blink-nerdfont.nvim",
 	},
 	config = function()
 		-- Setup and configure nvim-highlight-colors
@@ -43,8 +45,10 @@ return {
 				},
 			},
 			sources = {
-				default = { "lsp", "path", "snippets", "dadbod" },
+				default = { "lsp", "path", "snippets", "emoji", "nerdfont", "dadbod" },
 				providers = {
+					emoji = { name = "Emoji", module = "blink-emoji" },
+					nerdfont = { name = "Nerd Fonts", module = "blink-nerdfont" },
 					dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
 				},
 			},

@@ -63,6 +63,8 @@ return {
 					-- Go
 					"gopls",
 					"templ",
+					-- Rust
+					"rust_analyzer",
 					-- OCaml
 					"ocamllsp",
 					-- C
