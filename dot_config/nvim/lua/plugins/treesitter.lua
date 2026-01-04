@@ -8,58 +8,44 @@ return {
 	},
 	build = ":TSUpdate",
 	config = function()
-		-- Treesitter config
-		require("nvim-treesitter").setup({
-			ensure_installed = {
-				"comment",
-				"gitignore",
-				"make",
-				"just",
-				"ini",
-				"toml",
-				"yaml",
-				"json",
-				"markdown",
-				"markdown_inline",
-				"nix",
-				"sql",
-				"html",
-				"css",
-				"javascript",
-				"typescript",
-				"lua",
-				"bash",
-				"go",
-				"gomod",
-				"gosum",
-				"templ",
-				"python",
-				"r",
-				"ocaml",
-				"c",
-				"rust",
-			},
-			-- Install parsers synchronously (only applied to `ensure_installed`)
-			sync_install = false,
-			highlight = {
-				enable = true, -- Must be set in order for highlighting to take effect
-				additional_vim_regex_highlighting = false,
-			},
-			indent = {
-				enable = true,
-			},
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "<leader>s",
-					node_incremental = "<leader>sn",
-					scope_incremental = "<leader>ss",
-					node_decremental = "<leader>sd",
-				},
-			},
-			matchup = {
-				enable = true,
-			},
+		-- Ensure that syntax highlighting is enabled for the current buffer
+		local treesitter = vim.api.nvim_create_augroup("TreesitterConfig", { clear = true })
+		vim.api.nvim_create_autocmd("BufReadPost", {
+			group = treesitter,
+			pattern = "*",
+			callback = function()
+				vim.treesitter.start()
+			end,
+		})
+
+		require("nvim-treesitter").install({
+			"comment",
+			"gitignore",
+			"make",
+			"just",
+			"ini",
+			"toml",
+			"yaml",
+			"json",
+			"markdown",
+			"markdown_inline",
+			"nix",
+			"sql",
+			"html",
+			"css",
+			"javascript",
+			"typescript",
+			"lua",
+			"bash",
+			"go",
+			"gomod",
+			"gosum",
+			"templ",
+			"python",
+			"r",
+			"ocaml",
+			"c",
+			"rust",
 		})
 
 		-- Treesitter context
