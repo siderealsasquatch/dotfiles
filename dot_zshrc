@@ -186,6 +186,9 @@ alias task='go-task'
 # Make pacman display colored output
 alias pacman='pacman --color auto'
 
+# Ensure that yay only handles aur packages
+alias yay='yay -a'
+
 #======================
 # General purpose stuff
 #======================

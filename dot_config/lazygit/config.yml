@@ -1,6 +1,6 @@
 # Set lazygit to use the gitconfig file for the pager
 git:
-  paging:
-    colorArg: always
-    # pager: delta --paging=never --24-bit-color=never --syntax-theme base16 --line-numbers
-    pager: delta -n --dark --paging=never
+  pagers:
+    - colorArg: always
+      # pager: delta --paging=never --24-bit-color=never --syntax-theme base16 --line-numbers
+      pager: delta -n --dark --paging=never

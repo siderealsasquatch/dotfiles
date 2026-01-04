@@ -13,7 +13,8 @@ return {
 			lint.linters_by_ft = {
 				javascript = { "eslint_d" },
 				typescript = { "eslint_d" },
-				python = { "ruff", "mypy" },
+				-- python = { "ruff", "mypy" },
+				python = { "ruff" },
 				go = { "golangcilint" },
 				sh = { "shellcheck" },
 			}
@@ -53,6 +54,7 @@ return {
 					lua = { "stylua" },
 					python = { "ruff_format", "ruff_organize_imports" },
 					go = { "gofumpt", "goimports" },
+					sh = { "shfmt" },
 				},
 				format_on_save = {
 					lsp_fallback = true,

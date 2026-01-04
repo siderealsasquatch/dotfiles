@@ -35,7 +35,6 @@ return {
 					"eslint_d",
 					"golangci-lint",
 					"ruff",
-					"mypy",
 					-- Formatters
 					"stylua",
 					"djlint",
@@ -59,7 +58,7 @@ return {
 					-- Lua
 					"lua_ls",
 					-- Python
-					"basedpyright",
+					"ty",
 					-- Go
 					"gopls",
 					"templ",
