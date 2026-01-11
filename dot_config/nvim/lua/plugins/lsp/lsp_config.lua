@@ -18,21 +18,25 @@ return {
 
 					local bufnr = vim.api.nvim_get_current_buf()
 
-					if
-						#vim.lsp.get_clients({ bufnr = bufnr }) > 0
-						and vim.lsp.get_clients({ bufnr = bufnr })[1].name == "omnisharp"
-					then
-						utils.map("n", "gd", "<cmd>lua require('omnisharp_extended').lsp_definition()<cr>", opts)
-						utils.map("n", "gri", "<cmd>lua require('omnisharp_extended').lsp_implementation()<cr>", opts)
-						utils.map("n", "go", "<cmd>lua require('omnisharp_extended').lsp_type_definition()<cr>", opts)
-						utils.map("n", "grr", "<cmd>lua require('omnisharp_extended').lsp_references()<cr>", opts)
-					else
-						utils.map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-						utils.map("n", "gri", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-						utils.map("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
-						utils.map("n", "grr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-					end
+					-- if
+					-- 	#vim.lsp.get_clients({ bufnr = bufnr }) > 0
+					-- 	and vim.lsp.get_clients({ bufnr = bufnr })[1].name == "omnisharp"
+					-- then
+					-- 	utils.map("n", "gd", "<cmd>lua require('omnisharp_extended').lsp_definition()<cr>", opts)
+					-- 	utils.map("n", "gri", "<cmd>lua require('omnisharp_extended').lsp_implementation()<cr>", opts)
+					-- 	utils.map("n", "go", "<cmd>lua require('omnisharp_extended').lsp_type_definition()<cr>", opts)
+					-- 	utils.map("n", "grr", "<cmd>lua require('omnisharp_extended').lsp_references()<cr>", opts)
+					-- else
+					-- 	utils.map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+					-- 	utils.map("n", "gri", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+					-- 	utils.map("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
+					-- 	utils.map("n", "grr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+					-- end
 
+					utils.map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+					utils.map("n", "gri", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+					utils.map("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
+					utils.map("n", "grr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
 					utils.map("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
 					utils.map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
 					utils.map("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
@@ -47,7 +51,12 @@ return {
 				end,
 			})
 
-			require("mason").setup({})
+			require("mason").setup({
+				registries = {
+					"github:mason-org/mason-registry",
+					"github:Crashdummyy/mason-registry",
+				},
+			})
 			require("mason-tool-installer").setup({
 				-- I'm using this exclusively for linters and formatters
 				ensure_installed = {
@@ -61,7 +70,7 @@ return {
 					"gofumpt",
 					"goimports",
 					"prettierd",
-					"ocamlformat",
+					-- "ocamlformat",
 					"clang-format",
 				},
 			})
@@ -78,16 +87,18 @@ return {
 					-- Lua
 					"lua_ls",
 					-- Python
-					"basedpyright",
+					"ty",
+					-- "basedpyright",
+					-- "pyrefly",
 					-- Go
 					"gopls",
 					"templ",
 					-- OCaml
-					"ocamllsp",
+					-- "ocamllsp",
 					-- C
 					"clangd",
 					-- C#
-					"omnisharp",
+					-- "omnisharp",
 					-- Markdown
 					"marksman",
 					-- Docker stuff
@@ -108,9 +119,10 @@ return {
 
 			vim.diagnostic.config({
 				severity_sort = true,
-				virtual_lines = {
-					current_line = true,
-				},
+				-- virtual_lines = {
+				-- 	current_line = true,
+				-- },
+				virtual_text = true,
 				signs = {
 					text = {
 						-- [vim.diagnostic.severity.ERROR] = "✘",

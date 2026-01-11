@@ -1,6 +1,5 @@
 [tools]
 bat = "latest"
-btop = "latest"
 chezmoi = "latest"
 delta = "latest"
 direnv = "latest"
@@ -19,9 +18,10 @@ zoxide = "latest"
 node = "22"
 python = "3.10"
 bun = "latest"
-yt-dlp = "latest"
 neovim = "latest"
-github-cli = "latest"
+go = "latest"
+rust = "latest"
+duckdb = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]

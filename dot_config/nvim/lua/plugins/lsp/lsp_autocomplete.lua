@@ -8,6 +8,7 @@ return {
 		"xzbdmw/colorful-menu.nvim",
 	},
 	config = function()
+		require("luasnip.loaders.from_vscode").lazy_load()
 		local colorful_menu = require("colorful-menu")
 		colorful_menu.setup()
 		require("blink.cmp").setup({

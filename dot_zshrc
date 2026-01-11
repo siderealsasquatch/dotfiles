@@ -8,7 +8,7 @@ export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 export ZSH="/home/fahmi/.oh-my-zsh"
 
 plugins=(git vi-mode direnv tmux fzf fzf-tab ubuntu zsh-autosuggestions zsh-syntax-highlighting
-  nix-zsh-completions autoupdate docker docker-compose)
+  autoupdate docker docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -351,6 +351,9 @@ pipud() {
 # Python
 #-------
 
+# Add `pixi` to PATH
+export PATH="/home/fahmi/.pixi/bin:$PATH"
+
 # go
 # --
 
@@ -500,7 +503,7 @@ eval "$(zoxide init zsh)"
 . "$HOME/.cargo/env"
 
 # opam init
-[[ ! -r '/home/fahmi/.opam/opam-init/init.zsh' ]] || source '/home/fahmi/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+#[[ ! -r '/home/fahmi/.opam/opam-init/init.zsh' ]] || source '/home/fahmi/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
 
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'micromamba shell init' !!
