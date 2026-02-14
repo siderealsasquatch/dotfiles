@@ -351,6 +351,9 @@ pipud() {
 # Python
 #-------
 
+# Add pixi to path
+export PATH="/home/fahmi/.pixi/bin:$PATH"
+
 # go
 # --
 
@@ -435,7 +438,7 @@ j() {
         -E '{.git,__py*}' \
         -E node_modules \
         -E vendor \
-        . ~ /mnt/f/ /mnt/d/ /mnt/c/Users/Fahmi/ \
+        . ~ /mnt/e/ /mnt/c/Users/Fahmi/ \
         | fzf)
 }
 
@@ -461,7 +464,7 @@ t() {
         --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t --icons)' \
         --bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list -c --icons)' \
         --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z --icons)' \
-        --bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -I -d 4 -t d . ~ /mnt/d/ /mnt/f/)' \
+        --bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -I -d 4 -t d . ~ /mnt/e/ /mnt/c/Users/Fahmi/)' \
         --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list --icons)' \
         --bind '?:toggle-preview' \
         --preview 'sesh preview {}' \

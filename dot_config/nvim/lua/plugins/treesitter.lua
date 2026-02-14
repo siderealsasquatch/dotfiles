@@ -1,5 +1,6 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+	branch = "main",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-context",
@@ -7,60 +8,62 @@ return {
 	},
 	build = ":TSUpdate",
 	config = function()
-		-- Treesitter config
-		require("nvim-treesitter.configs").setup({
-			ensure_installed = {
-				"gitignore",
-				"comment",
-				"make",
-				"ini",
-				"toml",
-				"yaml",
-				"json",
-				"markdown",
-				"markdown_inline",
-				"nix",
-				"sql",
-				"html",
-				"css",
-				"javascript",
-				"typescript",
-				"lua",
-				"bash",
-				"go",
-				"gomod",
-				"gosum",
-				"gotmpl",
-				"templ",
-				"python",
-				"r",
-				"c_sharp",
-				"ocaml",
-				"c",
-				"dockerfile",
-				"just",
-			},
-			-- Install parsers synchronously (only applied to `ensure_installed`)
-			sync_install = false,
-			highlight = {
-				enable = true, -- Must be set in order for highlighting to take effect
-				additional_vim_regex_highlighting = false,
-			},
-			indent = {
-				enable = true,
-			},
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "<leader>s",
-					node_incremental = "<leader>s",
-					scope_incremental = "<leader>ss",
-					node_decremental = "<leader>sd",
-				},
-			},
-			matchup = {
-				enable = true,
-			},
+		-- Ensure that syntax highlighting is enabled for the current buffer
+		local treesitter = vim.api.nvim_create_augroup("TreesitterConfig", { clear = true })
+		-- vim.api.nvim_create_autocmd("BufReadPost", {
+		-- 	group = treesitter,
+		-- 	pattern = "*",
+		-- 	callback = function()
+		-- 		vim.treesitter.start()
+		-- 	end,
+		-- 	-- once = true,
+		-- })
+		vim.api.nvim_create_autocmd("FileType", {
+			group = treesitter,
+			pattern = "*",
+			callback = function(details)
+				local bufnr = details.buf
+				if not pcall(vim.treesitter.start, bufnr) then -- try to start treesitter which enables syntax highlighting
+					return -- Exit if treesitter was unable to start
+				end
+				-- vim.bo[bufnr].syntax = "on" -- Use regex based syntax-highlighting as fallback as some plugins might need it
+				-- vim.wo.foldlevel = 99
+				-- vim.wo.foldmethod = "expr"
+				-- vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Use treesitter for folds
+				vim.bo[bufnr].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" -- Use treesitter for indentation
+			end,
+		})
+
+		require("nvim-treesitter").install({
+			"gitignore",
+			"comment",
+			"make",
+			"ini",
+			"toml",
+			"yaml",
+			"json",
+			"markdown",
+			"markdown_inline",
+			"nix",
+			"sql",
+			"html",
+			"css",
+			"javascript",
+			"typescript",
+			"lua",
+			"bash",
+			"go",
+			"gomod",
+			"gosum",
+			"gotmpl",
+			"templ",
+			"python",
+			"r",
+			"c_sharp",
+			"ocaml",
+			"c",
+			"dockerfile",
+			"just",
 		})
 
 		-- Treesitter context

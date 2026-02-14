@@ -78,7 +78,8 @@ return {
 					-- Lua
 					"lua_ls",
 					-- Python
-					"basedpyright",
+					"ty",
+					-- "pyrefly",
 					-- Go
 					"gopls",
 					"templ",
@@ -93,6 +94,8 @@ return {
 					-- Docker stuff
 					"dockerls",
 					"docker_compose_language_service",
+					-- Rust
+					"rust_analyzer",
 				},
 			})
 

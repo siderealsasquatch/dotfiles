@@ -17,11 +17,12 @@ starship = "latest"
 yazi = "latest"
 zoxide = "latest"
 node = "22"
-python = "3.10"
+python = "3.12"
 bun = "latest"
-yt-dlp = "latest"
 neovim = "latest"
-github-cli = "latest"
+fastfetch = "latest"
+deno = "latest"
+yt-dlp = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]

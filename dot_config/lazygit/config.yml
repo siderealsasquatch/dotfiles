@@ -1,5 +1,5 @@
 # Set lazygit to use the gitconfig file for the pager
 git:
-  paging:
-    colorArg: always
-    pager: delta -n --dark --paging=never
+  pagers:
+    - colorArg: always
+      pager: delta -n --dark --paging=never
