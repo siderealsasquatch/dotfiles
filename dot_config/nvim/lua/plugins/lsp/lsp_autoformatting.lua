@@ -55,6 +55,7 @@ return {
 					lua = { "stylua" },
 					python = { "ruff_format", "ruff_organize_imports" },
 					go = { "gofumpt", "goimports" },
+					cs = { "csharpier" },
 				},
 				format_on_save = {
 					lsp_fallback = true,

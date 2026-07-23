@@ -7,6 +7,7 @@ return {
 			"saghen/blink.cmp",
 			"williamboman/mason-lspconfig.nvim",
 			"Hoffs/omnisharp-extended-lsp.nvim",
+			"seblyng/roslyn.nvim",
 		},
 		config = function()
 			-- This is where all the LSP shenanigans will live
@@ -70,8 +71,11 @@ return {
 					"gofumpt",
 					"goimports",
 					"prettierd",
+					"csharpier",
 					-- "ocamlformat",
 					"clang-format",
+					-- C# lsp (the only exception)
+					"roslyn",
 				},
 			})
 			local mason_lspconfig = require("mason-lspconfig")
@@ -88,8 +92,6 @@ return {
 					"lua_ls",
 					-- Python
 					"ty",
-					-- "basedpyright",
-					-- "pyrefly",
 					-- Go
 					"gopls",
 					"templ",
@@ -105,6 +107,10 @@ return {
 					"dockerls",
 					"docker_compose_language_service",
 				},
+			})
+
+			require("roslyn").setup({
+				ft = { "cs" },
 			})
 
 			vim.lsp.config("*", {

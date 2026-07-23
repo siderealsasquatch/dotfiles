@@ -44,7 +44,6 @@ return {
 			"json",
 			"markdown",
 			"markdown_inline",
-			"nix",
 			"sql",
 			"html",
 			"css",
