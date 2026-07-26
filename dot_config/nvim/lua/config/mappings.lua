@@ -7,8 +7,8 @@ global.maplocalleader = " "
 local utils = require("utils")
 
 -- Window splits
-utils.map("n", "<leader>wh", ":sp<CR>") -- horizontal
-utils.map("n", "<leader>wv", ":vsp<CR>") -- vertical
+utils.map("n", "<leader>sh", ":sp<CR>") -- horizontal
+utils.map("n", "<leader>sv", ":vsp<CR>") -- vertical
 
 -- Quickfix list
 utils.map("n", "<C-M-j>", "<cmd>cnext<CR>")

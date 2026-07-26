@@ -50,12 +50,12 @@ set.undodir = os.getenv("HOME") .. "/.nvim/undo" -- need to create first
 set.undofile = true
 
 -- Code folding
-set.foldmethod = "expr"
-set.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-set.foldtext = ""
-set.foldlevel = 99
--- set.foldlevelstart = 1
-set.foldnestmax = 4
+-- set.foldmethod = "expr"
+-- set.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- set.foldtext = ""
+-- set.foldlevel = 99
+-- -- set.foldlevelstart = 1
+-- set.foldnestmax = 4
 
 -- Spell check
 set.spelllang = "en_us"
