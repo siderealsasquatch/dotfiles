@@ -1,6 +1,5 @@
 [tools]
 bat = "latest"
-btop = "latest"
 chezmoi = "latest"
 delta = "latest"
 direnv = "latest"
@@ -23,6 +22,14 @@ neovim = "latest"
 fastfetch = "latest"
 deno = "latest"
 yt-dlp = "latest"
+go = "latest"
+rust = "latest"
+duckdb = "latest"
+air = "latest"
+usql = "latest"
+gomigrate = "latest"
+qsv = "latest"
+caddy = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]

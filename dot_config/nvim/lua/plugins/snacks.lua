@@ -41,6 +41,13 @@ return {
 			desc = "Buffers",
 		},
 		{
+			"<leader>fgb",
+			function()
+				Snacks.picker.grep_buffers()
+			end,
+			desc = "Buffers",
+		},
+		{
 			"<leader>fz",
 			function()
 				Snacks.picker.lines()
